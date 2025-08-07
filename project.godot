@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="its not-what-it-seems"
-run/main_scene="uid://di4i52anlf7am"
+run/main_scene="uid://5aotl6ngfxw2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
 [display]

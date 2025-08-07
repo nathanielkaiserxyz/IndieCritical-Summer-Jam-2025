@@ -1,8 +1,9 @@
-[gd_scene load_steps=20 format=3 uid="uid://cbmbngniueyie"]
+[gd_scene load_steps=21 format=3 uid="uid://cwsor1umju752"]
 
 [ext_resource type="Texture2D" uid="uid://bet0c82ammxe4" path="res://assets/player/player.png" id="1_4flbx"]
-[ext_resource type="Script" uid="uid://bj6laywc8rt4c" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Script" uid="uid://cpw6utorrdmva" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Texture2D" uid="uid://tbo4s03j54n8" path="res://assets/player/player-Sheet.png" id="3_i3pqv"]
+[ext_resource type="AudioStream" uid="uid://bykh81q7v0k6d" path="res://assets/player/jump.wav" id="4_hqtel"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(14, 15)
@@ -85,7 +86,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"duck_walk",
-"speed": 1.0
+"speed": 3.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -144,7 +145,7 @@ shape = SubResource("RectangleShape2D_onrkg")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 sprite_frames = SubResource("SpriteFrames_i3pqv")
-animation = &"duck"
+animation = &"duck_walk"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(2, 2)
@@ -152,5 +153,12 @@ drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
 [node name="CoyoteTimer" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.15
+one_shot = true
+
+[node name="jump" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+stream = ExtResource("4_hqtel")
+
+[node name="WallJumpTimer" type="Timer" parent="CharacterBody2D"]
 wait_time = 0.15
 one_shot = true
