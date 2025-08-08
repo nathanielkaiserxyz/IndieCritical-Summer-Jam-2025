@@ -1,0 +1,98 @@
+[gd_scene load_steps=11 format=3 uid="uid://etxumcd5d0yn"]
+
+[ext_resource type="Script" uid="uid://beqowio6jap42" path="res://parallax_background.gd" id="1_0g30k"]
+[ext_resource type="Texture2D" uid="uid://c650jpokvhw15" path="res://assets/world/background.png" id="2_sa5ru"]
+[ext_resource type="Texture2D" uid="uid://b2oq502hhc4j5" path="res://assets/world/galaxy_black_hole.png" id="3_cust3"]
+[ext_resource type="Texture2D" uid="uid://cnpai7pejkkim" path="res://assets/main_menu/moon.png" id="4_innu7"]
+[ext_resource type="Texture2D" uid="uid://dq68uuug1rmbc" path="res://assets/main_menu/title.png" id="5_fe2ui"]
+[ext_resource type="Script" uid="uid://dhbkngqdo0xi7" path="res://options_menu.gd" id="6_0g30k"]
+[ext_resource type="AudioStream" uid="uid://d2jop3pvy554t" path="res://assets/main_menu/intro.wav" id="7_6jo7l"]
+[ext_resource type="AudioStream" uid="uid://bfkd44623oqe3" path="res://assets/main_menu/loop.wav" id="8_58j1y"]
+[ext_resource type="AudioStream" uid="uid://w6ddlqylg0a3" path="res://assets/main_menu/synth.wav" id="9_ngskh"]
+[ext_resource type="Theme" uid="uid://b3fa8735odogg" path="res://assets/main_menu/menu_buttons.tres" id="10_8v3uq"]
+
+[node name="main_menu" type="Node2D"]
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+script = ExtResource("1_0g30k")
+
+[node name="stars" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.1, 0.1)
+motion_mirroring = Vector2(640, 360)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/stars"]
+position = Vector2(320, 180)
+texture = ExtResource("2_sa5ru")
+
+[node name="galaxies" type="ParallaxLayer" parent="ParallaxBackground"]
+visible = false
+motion_scale = Vector2(0.3, 0.3)
+motion_mirroring = Vector2(640, 360)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/galaxies"]
+position = Vector2(322, 180)
+texture = ExtResource("3_cust3")
+
+[node name="moon" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.4, 0.4)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/moon"]
+position = Vector2(319, 179)
+texture = ExtResource("4_innu7")
+
+[node name="title" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/title"]
+visible = false
+position = Vector2(321, 180)
+texture = ExtResource("5_fe2ui")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("6_0g30k")
+
+[node name="intro" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("7_6jo7l")
+autoplay = true
+
+[node name="loop" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("8_58j1y")
+
+[node name="click" type="AudioStreamPlayer2D" parent="Control"]
+
+[node name="hover" type="AudioStreamPlayer2D" parent="Control"]
+stream = ExtResource("9_ngskh")
+
+[node name="menu" type="VBoxContainer" parent="Control"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 119.0
+offset_right = 204.0
+offset_bottom = 233.0
+
+[node name="music" type="CheckButton" parent="Control/menu"]
+layout_mode = 2
+theme = ExtResource("10_8v3uq")
+button_pressed = true
+text = "Music"
+
+[node name="sound" type="CheckButton" parent="Control/menu"]
+layout_mode = 2
+theme = ExtResource("10_8v3uq")
+button_pressed = true
+text = "Sound"
+
+[node name="back" type="Button" parent="Control/menu"]
+layout_mode = 2
+theme = ExtResource("10_8v3uq")
+text = "Back"
+
+[connection signal="finished" from="Control/intro" to="Control" method="_on_intro_finished"]
+[connection signal="finished" from="Control/loop" to="Control" method="_on_loop_finished"]
+[connection signal="toggled" from="Control/menu/music" to="Control" method="_on_music_toggled"]
+[connection signal="toggled" from="Control/menu/sound" to="Control" method="_on_sound_toggled"]
+[connection signal="pressed" from="Control/menu/back" to="Control" method="_on_back_pressed"]

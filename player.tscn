@@ -175,13 +175,17 @@ zoom = Vector2(2, 2)
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="CoyoteTimer" type="Timer" parent="CharacterBody2D"]
+[node name="coyote_timer" type="Timer" parent="CharacterBody2D"]
 wait_time = 0.15
 one_shot = true
 
 [node name="jump" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 stream = ExtResource("4_hqtel")
 
-[node name="WallJumpTimer" type="Timer" parent="CharacterBody2D"]
+[node name="wall_jump_x_velo" type="Timer" parent="CharacterBody2D"]
 wait_time = 0.15
+one_shot = true
+
+[node name="wall_jump_reset" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.5
 one_shot = true

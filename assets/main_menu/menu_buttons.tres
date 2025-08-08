@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=5 format=3 uid="uid://b3fa8735odogg"]
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://b3fa8735odogg"]
 
 [ext_resource type="FontFile" uid="uid://bnlav1jmw2qff" path="res://assets/main_menu/MedodicaRegular.otf" id="1_c7p6s"]
 
@@ -21,9 +21,21 @@ border_width_bottom = 2
 border_color = Color(1, 1, 1, 1)
 anti_aliasing = false
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c7p6s"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xs4as"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(1, 1, 1, 1)
+
 [resource]
 default_font = ExtResource("1_c7p6s")
 Button/colors/font_color = Color(1, 1, 1, 1)
 Button/styles/disabled = SubResource("StyleBoxFlat_7pja4")
 Button/styles/hover = SubResource("StyleBoxFlat_hrvta")
 Button/styles/normal = SubResource("StyleBoxFlat_qniww")
+CheckButton/styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_c7p6s")
+CheckButton/styles/pressed = SubResource("StyleBoxFlat_xs4as")

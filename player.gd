@@ -10,8 +10,9 @@ var is_wall_sliding = false
 
 @onready var player = $player_animations
 @onready var outline = $outline_animations
-@onready var coyote_timer = $CoyoteTimer
-@onready var wall_jump_timer = $WallJumpTimer
+@onready var coyote_timer = $coyote_timer
+@onready var wall_jump_timer = $wall_jump_x_velo
+@onready var wall_jump_reset = $wall_jump_reset
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_ducking = false
@@ -37,8 +38,6 @@ func _physics_process(delta):
 	jump()
 	update_animation(delta)
 	
-	
-	
 	if was_on_floor and !is_on_floor():
 		coyote_timer.start()
 		
@@ -47,15 +46,17 @@ func jump():
 		if is_on_floor() or !coyote_timer.is_stopped():
 			velocity.y = JUMP_VELOCITY
 			
-		if is_on_wall() and Input.is_action_pressed('ui_right'):
+		if is_on_wall() and Input.is_action_pressed('ui_right') and wall_jump_reset.is_stopped():
 			velocity.y = JUMP_VELOCITY
 			velocity.x = -WALL_JUMP_POWER
 			wall_jump_timer.start()
+			wall_jump_reset.start()
 			
-		if is_on_wall() and Input.is_action_pressed('ui_left'):
+		if is_on_wall() and Input.is_action_pressed('ui_left') and wall_jump_reset.is_stopped():
 			velocity.y = JUMP_VELOCITY
 			velocity.x = WALL_JUMP_POWER
 			wall_jump_timer.start()
+			wall_jump_reset.start()
 			
 			
 func wallslide(delta):
