@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tbo4s03j54n8"
-path="res://.godot/imported/player-Sheet.png-85206104ee929818b21b9a15ec0157b1.ctex"
+uid="uid://cn211xnxygj7f"
+path="res://.godot/imported/MainLevelTileSetrestore.png-444475b6950c298a907bceb155fddc2a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/player-Sheet.png"
-dest_files=["res://.godot/imported/player-Sheet.png-85206104ee929818b21b9a15ec0157b1.ctex"]
+source_file="res://assets/world/MainLevelTileSetrestore.png"
+dest_files=["res://.godot/imported/MainLevelTileSetrestore.png-444475b6950c298a907bceb155fddc2a.ctex"]
 
 [params]
 

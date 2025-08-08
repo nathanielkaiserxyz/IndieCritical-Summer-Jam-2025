@@ -8,6 +8,8 @@ const WALL_JUMP_POWER = 75
 const WALL_SLIDE_GRAVITY = 50
 var is_wall_sliding = false
 
+@onready var player = $player_animations
+@onready var outline = $outline_animations
 @onready var coyote_timer = $CoyoteTimer
 @onready var wall_jump_timer = $WallJumpTimer
 
@@ -27,14 +29,15 @@ func _physics_process(delta):
 			velocity.x = direction * SPEED
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
-	
-	update_animation()
-	
+
 	var was_on_floor = is_on_floor()
 	
 	move_and_slide()
-	jump()
 	wallslide(delta)
+	jump()
+	update_animation(delta)
+	
+	
 	
 	if was_on_floor and !is_on_floor():
 		coyote_timer.start()
@@ -43,17 +46,17 @@ func jump():
 	if Input.is_action_just_pressed("ui_up"):
 		if is_on_floor() or !coyote_timer.is_stopped():
 			velocity.y = JUMP_VELOCITY
-			$jump.play()
+			
 		if is_on_wall() and Input.is_action_pressed('ui_right'):
 			velocity.y = JUMP_VELOCITY
 			velocity.x = -WALL_JUMP_POWER
 			wall_jump_timer.start()
-			$jump.play()
+			
 		if is_on_wall() and Input.is_action_pressed('ui_left'):
 			velocity.y = JUMP_VELOCITY
 			velocity.x = WALL_JUMP_POWER
 			wall_jump_timer.start()
-			$jump.play()
+			
 			
 func wallslide(delta):
 	if !is_on_floor() and is_on_wall() and velocity.y >= 0:
@@ -68,25 +71,42 @@ func wallslide(delta):
 		velocity.y = WALL_SLIDE_GRAVITY	
 	
 
-func update_animation():
-	if !is_on_floor():
-		$AnimatedSprite2D.animation = "jump"
+func update_animation(delta):
+	if is_on_wall() and !is_on_floor() and velocity.y >= 0:
+		if Input.is_action_pressed('ui_left'):
+			player.animation = "wall_slide"
+			player.flip_h = false
+		elif Input.is_action_pressed('ui_right'):
+			player.animation = "wall_slide"
+			player.flip_h = true
+		else:
+			player.animation = "jump"
+			
+	elif !is_on_floor():
+		if velocity.x > 0.1:
+			player.animation = "jump"
+			player.flip_h = false
+		elif velocity.x < -0.1:
+			player.animation = "jump"
+			player.flip_h = true
 	elif velocity.x > 0.1 and is_ducking:
-		$AnimatedSprite2D.animation = "duck_walk"
-		$AnimatedSprite2D.flip_h = false
+		player.animation = "duck_walk"
+		player.flip_h = false
 	elif velocity.x < -0.1 and is_ducking:
-		$AnimatedSprite2D.animation = "duck_walk"
-		$AnimatedSprite2D.flip_h = true
+		player.animation = "duck_walk"
+		player.flip_h = true
 	elif is_ducking:
-		$AnimatedSprite2D.animation = "duck"
+		player.animation = "duck"
 	elif velocity.x > 0.1:
-		$AnimatedSprite2D.animation = "run"
-		$AnimatedSprite2D.flip_h = false
+		player.animation = "run"
+		player.flip_h = false
 	elif velocity.x < -0.1:
-		$AnimatedSprite2D.animation = "run"
-		$AnimatedSprite2D.flip_h = true
+		player.animation = "run"
+		player.flip_h = true
 	else:
-		$AnimatedSprite2D.animation = "idle"
+		player.animation = "idle"
 	
-	$AnimatedSprite2D.play($AnimatedSprite2D.animation)
+	outline.flip_h = player.flip_h
+	outline.play(player.animation)
+	player.play(player.animation)
 	

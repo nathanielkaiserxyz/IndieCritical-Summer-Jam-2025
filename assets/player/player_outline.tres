@@ -4,5 +4,5 @@
 
 [resource]
 shader = ExtResource("1_gfm7r")
-shader_parameter/outline_color = Color(1, 0, 1, 1)
+shader_parameter/outline_color = Color(0.301079, 0.633799, 1, 1)
 shader_parameter/outline_thickness = 1.0
