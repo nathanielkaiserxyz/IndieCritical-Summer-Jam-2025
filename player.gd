@@ -43,14 +43,17 @@ func jump():
 	if Input.is_action_just_pressed("ui_up"):
 		if is_on_floor() or !coyote_timer.is_stopped():
 			velocity.y = JUMP_VELOCITY
+			$jump.play()
 		if is_on_wall() and Input.is_action_pressed('ui_right'):
 			velocity.y = JUMP_VELOCITY
 			velocity.x = -WALL_JUMP_POWER
 			wall_jump_timer.start()
+			$jump.play()
 		if is_on_wall() and Input.is_action_pressed('ui_left'):
 			velocity.y = JUMP_VELOCITY
 			velocity.x = WALL_JUMP_POWER
 			wall_jump_timer.start()
+			$jump.play()
 			
 func wallslide(delta):
 	if !is_on_floor() and is_on_wall() and velocity.y >= 0:

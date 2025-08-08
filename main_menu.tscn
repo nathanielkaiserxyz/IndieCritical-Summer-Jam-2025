@@ -29,7 +29,7 @@ motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 360)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/stars"]
-position = Vector2(321, 181)
+position = Vector2(320, 180)
 texture = ExtResource("1_jix8l")
 
 [node name="galaxies" type="ParallaxLayer" parent="ParallaxBackground"]
