@@ -3,6 +3,7 @@ extends CharacterBody2D
 const SPEED = 200.0
 
 const JUMP_VELOCITY = -300.0
+const FRICTION = 900
 
 const WALL_JUMP_POWER = 75
 const WALL_SLIDE_GRAVITY = 50
@@ -16,8 +17,15 @@ var is_wall_sliding = false
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_ducking = false
+var change_skin = false
 
 func _physics_process(delta):
+	change_skin = Input.is_action_pressed("ui_r")
+	if change_skin:
+		$outline_animations.material.set_shader_parameter("outline_color", PlayerData.new_skin())
+		print($outline_animations.material)
+		print($outline_animations.material is ShaderMaterial)
+		print(PlayerData.new_skin())
 	is_ducking = Input.is_action_pressed("ui_down")
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -32,6 +40,9 @@ func _physics_process(delta):
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	var was_on_floor = is_on_floor()
+	
+	if is_on_floor():
+		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
 	
 	move_and_slide()
 	wallslide()

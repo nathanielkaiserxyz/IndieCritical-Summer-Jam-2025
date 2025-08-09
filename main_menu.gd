@@ -2,7 +2,7 @@ extends Control
 
 func _on_startgame_pressed():
 	$click.play()
-	LevelLoader.load_level(0)
+	LevelLoader.start_game()
 
 func _on_options_pressed():
 	$click.play()
