@@ -34,9 +34,9 @@ func _physics_process(delta):
 	var was_on_floor = is_on_floor()
 	
 	move_and_slide()
-	wallslide(delta)
+	wallslide()
 	jump()
-	update_animation(delta)
+	update_animation()
 	
 	if was_on_floor and !is_on_floor():
 		coyote_timer.start()
@@ -59,7 +59,7 @@ func jump():
 			wall_jump_reset.start()
 			
 			
-func wallslide(delta):
+func wallslide():
 	if !is_on_floor() and is_on_wall() and velocity.y >= 0:
 		if Input.is_action_pressed('ui_right')	or Input.is_action_pressed('ui_left'):
 			is_wall_sliding = true
@@ -72,7 +72,7 @@ func wallslide(delta):
 		velocity.y = WALL_SLIDE_GRAVITY	
 	
 
-func update_animation(delta):
+func update_animation():
 	if is_on_wall() and !is_on_floor() and velocity.y >= 0:
 		if Input.is_action_pressed('ui_left'):
 			player.animation = "wall_slide"

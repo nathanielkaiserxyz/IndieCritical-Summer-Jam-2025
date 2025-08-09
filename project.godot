@@ -14,6 +14,10 @@ config/name="its not-what-it-seems"
 run/main_scene="uid://5aotl6ngfxw2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 
+[autoload]
+
+LevelLoader="*res://scripts/level_loader.gd"
+
 [display]
 
 window/size/viewport_width=640

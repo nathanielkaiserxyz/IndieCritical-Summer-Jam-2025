@@ -2,7 +2,7 @@ extends Control
 
 func _on_startgame_pressed():
 	$click.play()
-	get_tree().change_scene_to_file("res://world.tscn")
+	LevelLoader.load_level(0)
 
 func _on_options_pressed():
 	$click.play()
