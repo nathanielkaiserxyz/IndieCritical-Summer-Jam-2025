@@ -19,15 +19,15 @@ float has_solid_neighbor(sampler2D texture_sample, vec2 uv_coord, vec2 pixel_siz
 
 void fragment() {
     vec4 current = texture(TEXTURE, UV);
-	
+
     if (current.a > 0.0) {
-        discard; 
+        discard;
     }
 
     float outline_mask = has_solid_neighbor(TEXTURE, UV, TEXTURE_PIXEL_SIZE);
     if (outline_mask > 0.0) {
         COLOR = outline_color;
     } else {
-        discard; 
+        discard;
     }
 }

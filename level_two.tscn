@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=4 uid="uid://ydkx5w8288k0"]
+[gd_scene load_steps=24 format=4 uid="uid://ydkx5w8288k0"]
 
 [ext_resource type="Shader" uid="uid://b7ocywfvhchmk" path="res://assets/world/world.gdshader" id="1_ook2w"]
 [ext_resource type="Texture2D" uid="uid://cn211xnxygj7f" path="res://assets/world/MainLevelTileSetrestore.png" id="2_q0uq4"]
@@ -10,6 +10,10 @@
 [ext_resource type="PackedScene" uid="uid://cwsor1umju752" path="res://player.tscn" id="8_f8h4k"]
 [ext_resource type="Script" uid="uid://cv47gb3gkqrfy" path="res://level_doors.gd" id="9_klqtm"]
 [ext_resource type="Texture2D" uid="uid://6g6idhy1qkic" path="res://assets/world/door.png" id="10_ytroq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j03hg"]
+shader = ExtResource("1_ook2w")
+shader_parameter/tint_color = Color(0, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ioo17"]
 shader = ExtResource("1_ook2w")
@@ -613,9 +617,26 @@ sources/3 = SubResource("TileSetAtlasSource_036b0")
 sources/1 = SubResource("TileSetAtlasSource_pkg7o")
 sources/2 = SubResource("TileSetAtlasSource_gbfbk")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ook2w"]
+shader = ExtResource("1_ook2w")
+shader_parameter/tint_color = Color(1, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_q0uq4"]
+shader = ExtResource("1_ook2w")
+shader_parameter/tint_color = Color(0, 1, 1, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c6k8r"]
+shader = ExtResource("1_ook2w")
+shader_parameter/tint_color = Color(0, 1, 1, 1)
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3n1d"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_48q8l"]
+shader = ExtResource("1_ook2w")
+shader_parameter/tint_color = Color(0, 1, 1, 1)
+
 [node name="level_one" type="Node2D"]
+material = SubResource("ShaderMaterial_j03hg")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 material = SubResource("ShaderMaterial_ioo17")
@@ -625,10 +646,12 @@ tile_set = SubResource("TileSet_tlwt5")
 [node name="ParallaxStars" type="ParallaxBackground" parent="."]
 
 [node name="StarLayer" type="ParallaxLayer" parent="ParallaxStars"]
+material = SubResource("ShaderMaterial_ook2w")
 motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 360)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/StarLayer"]
+material = SubResource("ShaderMaterial_q0uq4")
 position = Vector2(320, 180)
 texture = ExtResource("6_8gbg3")
 
@@ -637,6 +660,7 @@ motion_scale = Vector2(0.3, 0.3)
 motion_mirroring = Vector2(3200, 1800)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/galaxies"]
+material = SubResource("ShaderMaterial_c6k8r")
 position = Vector2(320, 181)
 texture = ExtResource("7_orixp")
 
@@ -651,6 +675,7 @@ script = ExtResource("9_klqtm")
 shape = SubResource("CapsuleShape2D_k3n1d")
 
 [node name="Sprite2D" type="Sprite2D" parent="levelDoors"]
+material = SubResource("ShaderMaterial_48q8l")
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_ytroq")
 

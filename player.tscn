@@ -190,3 +190,7 @@ one_shot = true
 [node name="wall_jump_reset" type="Timer" parent="CharacterBody2D"]
 wait_time = 0.5
 one_shot = true
+
+[node name="skin_change_timer" type="Timer" parent="CharacterBody2D"]
+wait_time = 0.25
+one_shot = true

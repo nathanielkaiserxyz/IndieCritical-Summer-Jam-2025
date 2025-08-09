@@ -14,6 +14,7 @@ var is_wall_sliding = false
 @onready var coyote_timer = $coyote_timer
 @onready var wall_jump_timer = $wall_jump_x_velo
 @onready var wall_jump_reset = $wall_jump_reset
+@onready var skin_change = $skin_change_timer
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_ducking = false
@@ -21,11 +22,9 @@ var change_skin = false
 
 func _physics_process(delta):
 	change_skin = Input.is_action_pressed("ui_r")
-	if change_skin:
+	if change_skin and skin_change.is_stopped():
 		$outline_animations.material.set_shader_parameter("outline_color", PlayerData.new_skin())
-		print($outline_animations.material)
-		print($outline_animations.material is ShaderMaterial)
-		print(PlayerData.new_skin())
+		skin_change.start()
 	is_ducking = Input.is_action_pressed("ui_down")
 	if not is_on_floor():
 		velocity.y += gravity * delta
