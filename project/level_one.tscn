@@ -661,6 +661,7 @@ sources/4 = SubResource("TileSetAtlasSource_xq862")
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k3n1d"]
 
 [node name="level_one" type="Node2D"]
+y_sort_enabled = true
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 material = SubResource("ShaderMaterial_ioo17")
@@ -674,7 +675,7 @@ motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 360)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/StarLayer"]
-position = Vector2(320, 180)
+position = Vector2(322, 179)
 texture = ExtResource("6_07h6n")
 
 [node name="galaxies" type="ParallaxLayer" parent="ParallaxStars"]
@@ -686,9 +687,11 @@ position = Vector2(320, 181)
 texture = ExtResource("7_37gll")
 
 [node name="Player" parent="." instance=ExtResource("8_rapvx")]
-position = Vector2(274, 233)
+top_level = true
+position = Vector2(357, 225)
 
 [node name="levelDoors" type="Area2D" parent="."]
+visibility_layer = 4
 position = Vector2(219, 240)
 script = ExtResource("9_uyji0")
 
@@ -700,10 +703,12 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("10_i8j42")
 
 [node name="respawn_door1" parent="." instance=ExtResource("12_xq862")]
+visibility_layer = 4
 position = Vector2(-24, 200)
 
 [node name="respawn_door2" parent="." instance=ExtResource("12_xq862")]
-position = Vector2(391, 248)
+visibility_layer = 4
+position = Vector2(392, 248)
 
 [connection signal="area_entered" from="levelDoors" to="levelDoors" method="_on_area_entered"]
 [connection signal="body_entered" from="levelDoors" to="levelDoors" method="_on_body_entered"]

@@ -36,6 +36,7 @@ animations = [{
 [node name="respawn_door" type="Node2D"]
 
 [node name="Area2D" type="Area2D" parent="."]
+visibility_layer = 4
 script = ExtResource("2_ls3a4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]

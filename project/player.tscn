@@ -152,6 +152,7 @@ animations = [{
 }]
 
 [node name="Player" type="Node2D"]
+y_sort_enabled = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 material = ExtResource("2_sweqy")
@@ -173,6 +174,7 @@ animation = &"idle"
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 zoom = Vector2(2, 2)
+position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
