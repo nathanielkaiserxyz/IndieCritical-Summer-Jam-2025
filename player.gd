@@ -15,19 +15,30 @@ var is_wall_sliding = false
 @onready var wall_jump_timer = $wall_jump_x_velo
 @onready var wall_jump_reset = $wall_jump_reset
 @onready var skin_change = $skin_change_timer
+@onready var jump_buffer = $jump_buffer_timer
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_ducking = false
 var change_skin = false
 
 func _physics_process(delta):
+	_check_for_spikes()
+	
+	
 	change_skin = Input.is_action_pressed("ui_r")
 	if change_skin and skin_change.is_stopped():
 		$outline_animations.material.set_shader_parameter("outline_color", PlayerData.new_skin())
 		skin_change.start()
+
 	is_ducking = Input.is_action_pressed("ui_down")
-	if not is_on_floor():
+	
+	if !is_on_floor():
 		velocity.y += gravity * delta
+		if Input.is_action_just_pressed("ui_up"):
+			jump_buffer.start()
+	else:
+		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
+		jump()
 	
 	if wall_jump_timer.is_stopped():
 		var direction = Input.get_axis("ui_left", "ui_right")
@@ -40,9 +51,6 @@ func _physics_process(delta):
 
 	var was_on_floor = is_on_floor()
 	
-	if is_on_floor():
-		velocity.x = move_toward(velocity.x, 0, FRICTION * delta)
-	
 	move_and_slide()
 	wallslide()
 	jump()
@@ -52,7 +60,13 @@ func _physics_process(delta):
 		coyote_timer.start()
 		
 func jump():
+	if is_on_floor() and !jump_buffer.is_stopped():
+			velocity.y = JUMP_VELOCITY
+	
 	if Input.is_action_just_pressed("ui_up"):
+		if !is_on_floor():
+			jump_buffer.start()
+			
 		if is_on_floor() or !coyote_timer.is_stopped():
 			velocity.y = JUMP_VELOCITY
 			
@@ -67,7 +81,6 @@ func jump():
 			velocity.x = WALL_JUMP_POWER
 			wall_jump_timer.start()
 			wall_jump_reset.start()
-			
 			
 func wallslide():
 	if !is_on_floor() and is_on_wall() and velocity.y >= 0:
@@ -120,4 +133,21 @@ func update_animation():
 	outline.flip_h = player.flip_h
 	outline.play(player.animation)
 	player.play(player.animation)
-	
+
+func _check_for_spikes():
+	for i in range(get_slide_collision_count()):
+		var collision = get_slide_collision(i)
+		var collider = collision.get_collider()
+
+		if collider is TileMapLayer:
+			var tilemap: TileMapLayer = collider
+			var tile_pos = tilemap.local_to_map(collision.get_position())
+			
+			var data = tilemap.get_cell_tile_data(tile_pos)
+			if data != null:
+				if data.get_custom_data("damage") == 1:
+					respawn()
+					
+func respawn():
+	PlayerData.add_death()
+	global_position = PlayerData.respawn_position			

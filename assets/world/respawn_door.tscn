@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://bgfqhka06ffwm"]
+
+[ext_resource type="Texture2D" uid="uid://cclioi6cwwvlf" path="res://assets/world/respawndoor.png" id="1_yyt5c"]
+[ext_resource type="Script" uid="uid://dbp3y2kk7tqag" path="res://assets/world/respawn_door.gd" id="2_ls3a4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_biojx"]
+size = Vector2(16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ls3a4"]
+atlas = ExtResource("1_yyt5c")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l17l2"]
+atlas = ExtResource("1_yyt5c")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yxy2u"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ls3a4")
+}],
+"loop": true,
+"name": &"not_respawn_here",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l17l2")
+}],
+"loop": true,
+"name": &"respawn_here",
+"speed": 5.0
+}]
+
+[node name="respawn_door" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+script = ExtResource("2_ls3a4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_biojx")
+
+[node name="respawn_door" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = SubResource("SpriteFrames_yxy2u")
+animation = &"not_respawn_here"
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

@@ -3,6 +3,9 @@ extends Node
 var skin_index = 0
 var temp = 0
 
+var respawn_position : Vector2
+var player_death_count = 0
+
 var skins = [
 	Vector4(1.0,1.0,1.0,1.0),
 	Vector4(0.0,1.0,1.0,1.0),
@@ -20,3 +23,7 @@ func new_skin():
 		
 	skin_index += 1
 	return skins[skin_index - 1]
+
+func add_death():
+	player_death_count += 1
+	print("death_count = ", player_death_count)
