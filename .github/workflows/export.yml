@@ -1,0 +1,15 @@
+  - name: Godot Export
+  # You may pin to the exact commit or the version.
+  # uses: firebelley/godot-export@29965918cc35b77c465839035775e0e12dc87029
+  uses: firebelley/godot-export@v6.0.0
+  with:
+    # The download url of the Linux Headless Godot executable.
+    godot_executable_download_url: https://github.com/godotengine/godot/releases/download/4.4.1-stable/Godot_v4.4.1-stable_linux.x86_64.zip
+    # The url of the export templates corresponding to the Godot executable version.
+    godot_export_templates_download_url: /
+    # The path relative to the root of the git repository that contains the "project.godot" file.
+    relative_project_path: /webexport/
+    # If "true", all exported files will be archived into a ".zip" file.
+    archive_output: archive
+    # If "true", files that are archived will be placed in a root folder within the archive.
+    
