@@ -2,7 +2,7 @@ extends ParallaxBackground
 
 @export var max_offset := Vector2(50, 30)
 
-func _process(delta):
+func _process(_delta):
 	var viewport_size = get_viewport().get_visible_rect().size
 	var mouse_pos = get_viewport().get_mouse_position()
 

@@ -26,25 +26,27 @@ const PUSH_FORCE = 2000
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_ducking = false
 var change_skin = false
-
-var grabbed_box = RigidBody2D
 var has_box = false
-var grab_distance = 9
-var grab_strengh = 50
+var has_key = false
 
+func _ready():
+	$outline_animations.material.set_shader_parameter("outline_color", PlayerData.force_skin_change())
+	print('go')
+	
 func _physics_process(delta):
 	_check_for_collision()
 	
 	if position.y > KILL_ZONE_Y:
 		respawn()
 	
-	if Input.is_action_pressed("ui_accept") and has_box and drop_timer.is_stopped():
+	if Input.is_action_pressed("ui_accept") and (has_box or has_key) and drop_timer.is_stopped():
 		box_grabber.node_b = NodePath("")
 		has_box = false
+		has_key = false
+		PlayerData.has_key = false
 		drop_timer.start()
 	
-	change_skin = Input.is_action_pressed("ui_r")
-	if change_skin and skin_change.is_stopped():
+	if Input.is_action_pressed("ui_r") and skin_change.is_stopped():
 		$outline_animations.material.set_shader_parameter("outline_color", PlayerData.new_skin())
 		skin_change.start()
 
@@ -162,11 +164,16 @@ func _check_for_collision():
 		var collider = collision.get_collider()
 		
 		if collider is RigidBody2D and Input.is_action_pressed('ui_accept') and !has_box and drop_timer.is_stopped():
-			box_grabber.node_b = collider.get_path()
-			has_box = true
-			grabbed_box = collider
-			drop_timer.start()
-			
+			if collider.is_in_group("box"):
+				box_grabber.node_b = collider.get_path()
+				has_box = true
+				drop_timer.start()
+			if collider.is_in_group("key"):
+				box_grabber.node_b = collider.get_path()
+				has_key = true
+				PlayerData.has_key = true
+				drop_timer.start()
+				
 		#if collider is RigidBody2D and has_box:
 			#collider.apply_force((collider.global_position - global_position).normalized() * PUSH_FORCE)
 

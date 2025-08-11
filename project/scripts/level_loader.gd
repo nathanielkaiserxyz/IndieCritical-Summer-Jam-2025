@@ -16,6 +16,9 @@ func start_game():
 func load_level(index: int):
 	if index >= 0 and index < levels.size():
 		current_level_index = index
+		if index == 1:
+			PlayerData.append_skins(Vector4(0.0,1.0,1.0,1.0))
+		
 		get_tree().change_scene_to_file(levels[index])
 	else:
 		print("No more levels — you win!")

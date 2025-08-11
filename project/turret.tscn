@@ -3,17 +3,20 @@
 [ext_resource type="Script" uid="uid://07ovp48baoa5" path="res://turret.gd" id="1_tjdg3"]
 [ext_resource type="Texture2D" uid="uid://cipssd4fnulgt" path="res://assets/world/turret.png" id="2_c5apd"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_coqkk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tjdg3"]
 size = Vector2(16, 13)
 
-[node name="turret" type="Node2D"]
+[node name="turret" type="Node2D" groups=["player"]]
 script = ExtResource("1_tjdg3")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="firing_position" type="Node2D" parent="."]
+position = Vector2(0, -7)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_coqkk")
+[node name="turret" type="StaticBody2D" parent="."]
 
-[node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]
+[node name="Sprite2D" type="Sprite2D" parent="turret"]
 texture = ExtResource("2_c5apd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="turret"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_tjdg3")

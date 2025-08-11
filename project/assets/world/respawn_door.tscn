@@ -34,9 +34,11 @@ animations = [{
 }]
 
 [node name="respawn_door" type="Node2D"]
+use_parent_material = true
 
 [node name="Area2D" type="Area2D" parent="."]
 visibility_layer = 4
+use_parent_material = true
 collision_mask = 7
 script = ExtResource("2_ls3a4")
 
@@ -44,6 +46,7 @@ script = ExtResource("2_ls3a4")
 shape = SubResource("RectangleShape2D_biojx")
 
 [node name="respawn_door" type="AnimatedSprite2D" parent="Area2D"]
+use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_yxy2u")
 animation = &"not_respawn_here"
 
