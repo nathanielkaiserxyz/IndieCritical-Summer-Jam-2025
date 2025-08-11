@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=4 uid="uid://bf536iun2fevu"]
+[gd_scene load_steps=31 format=4 uid="uid://bf536iun2fevu"]
 
 [ext_resource type="Shader" uid="uid://b7ocywfvhchmk" path="res://assets/world/world.gdshader" id="1_orixp"]
 [ext_resource type="Texture2D" uid="uid://cn211xnxygj7f" path="res://assets/world/MainLevelTileSetrestore.png" id="2_f8h4k"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" uid="uid://cv47gb3gkqrfy" path="res://level_doors.gd" id="11_3cfpt"]
 [ext_resource type="Texture2D" uid="uid://6g6idhy1qkic" path="res://assets/world/door.png" id="12_531n3"]
 [ext_resource type="PackedScene" uid="uid://bgfqhka06ffwm" path="res://assets/world/respawn_door.tscn" id="13_qotln"]
+[ext_resource type="PackedScene" uid="uid://b2vvlq0sh0rt6" path="res://flame.tscn" id="14_48q8l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_orixp"]
 shader = ExtResource("1_orixp")
@@ -757,6 +758,11 @@ texture = ExtResource("12_531n3")
 [node name="respawn_door" parent="." instance=ExtResource("13_qotln")]
 material = SubResource("ShaderMaterial_f8h4k")
 position = Vector2(584, 56)
+
+[node name="flame" parent="." instance=ExtResource("14_48q8l")]
+modulate = Color(0, 1, 1, 1)
+self_modulate = Color(0, 1, 1, 1)
+position = Vector2(136, 103)
 
 [connection signal="area_entered" from="levelDoors" to="levelDoors" method="_on_area_entered"]
 [connection signal="body_entered" from="levelDoors" to="levelDoors" method="_on_body_entered"]

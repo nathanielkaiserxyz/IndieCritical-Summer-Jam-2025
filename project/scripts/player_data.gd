@@ -8,10 +8,6 @@ var respawn_position : Vector2
 var respawn_door = 0
 var player_death_count = 0
 
-var level_one_particle = false
-var level_two_particle = false
-var level_three_particle = false
-
 var skins = [
 	Vector4(1.0,1.0,1.0,1.0),
 ]
@@ -34,4 +30,8 @@ func add_death():
 	print("death_count = ", player_death_count)
 
 func force_skin_change():
-	return skins[skins.size() - 1]
+	skin_index = skins.size() - 1
+	return skins[skin_index]
+	
+func update_flame_color():
+	return skins[skin_index]

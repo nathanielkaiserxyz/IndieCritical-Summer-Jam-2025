@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2vvlq0sh0rt6"]
+
+[ext_resource type="Script" uid="uid://bf2n8mot38ru" path="res://flame.gd" id="1_a44u2"]
+[ext_resource type="Material" uid="uid://cnjexu6xbaj1j" path="res://assets/player/flame_effect.tres" id="2_kddwg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y35ty"]
+
+[node name="test" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 7
+script = ExtResource("1_a44u2")
+
+[node name="flame" type="GPUParticles2D" parent="Area2D"]
+position = Vector2(0, -5)
+process_material = ExtResource("2_kddwg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_y35ty")
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

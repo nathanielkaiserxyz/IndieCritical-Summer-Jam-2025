@@ -6,8 +6,14 @@ var levels = [
 	"res://level_two.tscn",
 	"res://level_three.tscn"
 ]
-
+var flames = [
+	false,
+	false,
+	false
+]
 var current_level_index := 0
+
+
 
 func start_game():
 	current_level_index = 0
@@ -27,3 +33,10 @@ func load_level(index: int):
 
 func next_level():
 	load_level(current_level_index + 1)
+	
+func set_flame_found():
+	flames[current_level_index] = true
+	print(flames[current_level_index])
+
+
+	

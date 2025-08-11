@@ -21,7 +21,7 @@ const PUSH_FORCE = 2000
 @onready var jump_buffer = $jump_buffer_timer
 @onready var box_grabber = $box_grabber
 @onready var drop_timer = $drop_timer
-
+var flame := find_child("flame", true, false)
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_ducking = false
@@ -31,7 +31,6 @@ var has_key = false
 
 func _ready():
 	$outline_animations.material.set_shader_parameter("outline_color", PlayerData.force_skin_change())
-	print('go')
 	
 func _physics_process(delta):
 	_check_for_collision()
@@ -47,7 +46,11 @@ func _physics_process(delta):
 		drop_timer.start()
 	
 	if Input.is_action_pressed("ui_r") and skin_change.is_stopped():
-		$outline_animations.material.set_shader_parameter("outline_color", PlayerData.new_skin())
+		var v = PlayerData.new_skin()
+		$outline_animations.material.set_shader_parameter("outline_color", v)
+		print(flame)
+		if flame:
+			flame.self_modulate = Color(v.x, v.y, v.z)
 		skin_change.start()
 
 	is_ducking = Input.is_action_pressed("ui_down")

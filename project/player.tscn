@@ -1,10 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://cwsor1umju752"]
+[gd_scene load_steps=23 format=3 uid="uid://cwsor1umju752"]
 
 [ext_resource type="Texture2D" uid="uid://bet0c82ammxe4" path="res://assets/player/player.png" id="1_4flbx"]
 [ext_resource type="Script" uid="uid://cpw6utorrdmva" path="res://player.gd" id="1_onrkg"]
 [ext_resource type="Material" uid="uid://cyylxrrgf7n3j" path="res://assets/player/player_outline.tres" id="2_sweqy"]
 [ext_resource type="AudioStream" uid="uid://bykh81q7v0k6d" path="res://assets/player/jump.wav" id="4_hqtel"]
-[ext_resource type="Material" uid="uid://cnjexu6xbaj1j" path="res://assets/player/flame_effect.tres" id="5_sweqy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_onrkg"]
 size = Vector2(14, 15)
@@ -164,10 +163,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="Node2D"]
+[node name="Player" type="Node2D" groups=["player"]]
 y_sort_enabled = true
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+z_index = 1
 material = ExtResource("2_sweqy")
 collision_layer = 2
 collision_mask = 7
@@ -225,8 +225,3 @@ one_shot = true
 [node name="box_grabber" type="PinJoint2D" parent="CharacterBody2D"]
 node_a = NodePath("..")
 angular_limit_enabled = true
-
-[node name="flame" type="GPUParticles2D" parent="CharacterBody2D"]
-position = Vector2(0, -4)
-amount = 30
-process_material = ExtResource("5_sweqy")
