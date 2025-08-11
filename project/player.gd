@@ -178,6 +178,8 @@ func _check_for_collision():
 			if data != null:
 				if data.get_custom_data("damage") == 1:
 					respawn()
+				if data.get_custom_data("shootup") > 0:
+					velocity.y = -data.get_custom_data("shootup")
 					
 func respawn():
 	PlayerData.add_death()
