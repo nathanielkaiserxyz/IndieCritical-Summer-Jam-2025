@@ -4,6 +4,7 @@ var skin_index = 0
 var temp = 0
 
 var respawn_position : Vector2
+var respawn_door = 0
 var player_death_count = 0
 
 var skins = [

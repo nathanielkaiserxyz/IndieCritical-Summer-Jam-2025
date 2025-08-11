@@ -2,12 +2,15 @@ extends CharacterBody2D
 
 const SPEED = 200.0
 
-const JUMP_VELOCITY = -300.0
+const JUMP_VELOCITY = -300
 const FRICTION = 900
 
 const WALL_JUMP_POWER = 75
 const WALL_SLIDE_GRAVITY = 50
 var is_wall_sliding = false
+
+const KILL_ZONE_Y = 1000
+const PUSH_FORCE = 2000
 
 @onready var player = $player_animations
 @onready var outline = $outline_animations
@@ -16,14 +19,29 @@ var is_wall_sliding = false
 @onready var wall_jump_reset = $wall_jump_reset
 @onready var skin_change = $skin_change_timer
 @onready var jump_buffer = $jump_buffer_timer
+@onready var box_grabber = $box_grabber
+@onready var drop_timer = $drop_timer
+
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var is_ducking = false
 var change_skin = false
 
+var grabbed_box = RigidBody2D
+var has_box = false
+var grab_distance = 9
+var grab_strengh = 50
+
 func _physics_process(delta):
-	_check_for_spikes()
+	_check_for_collision()
 	
+	if position.y > KILL_ZONE_Y:
+		respawn()
+	
+	if Input.is_action_pressed("ui_accept") and has_box and drop_timer.is_stopped():
+		box_grabber.node_b = NodePath("")
+		has_box = false
+		drop_timer.start()
 	
 	change_skin = Input.is_action_pressed("ui_r")
 	if change_skin and skin_change.is_stopped():
@@ -60,6 +78,9 @@ func _physics_process(delta):
 		coyote_timer.start()
 		
 func jump():
+	if has_box:
+		return
+			
 	if is_on_floor() and !jump_buffer.is_stopped():
 			velocity.y = JUMP_VELOCITY
 	
@@ -70,20 +91,20 @@ func jump():
 		if is_on_floor() or !coyote_timer.is_stopped():
 			velocity.y = JUMP_VELOCITY
 			
-		if is_on_wall() and Input.is_action_pressed('ui_right') and wall_jump_reset.is_stopped():
+		if is_on_wall() and Input.is_action_pressed('ui_right') and wall_jump_reset.is_stopped() and !has_box:
 			velocity.y = JUMP_VELOCITY
 			velocity.x = -WALL_JUMP_POWER
 			wall_jump_timer.start()
 			wall_jump_reset.start()
 			
-		if is_on_wall() and Input.is_action_pressed('ui_left') and wall_jump_reset.is_stopped():
+		if is_on_wall() and Input.is_action_pressed('ui_left') and wall_jump_reset.is_stopped() and !has_box:
 			velocity.y = JUMP_VELOCITY
 			velocity.x = WALL_JUMP_POWER
 			wall_jump_timer.start()
 			wall_jump_reset.start()
 			
 func wallslide():
-	if !is_on_floor() and is_on_wall() and velocity.y >= 0:
+	if !is_on_floor() and is_on_wall() and velocity.y >= 0 and !has_box:
 		if Input.is_action_pressed('ui_right')	or Input.is_action_pressed('ui_left'):
 			is_wall_sliding = true
 		else:
@@ -96,7 +117,7 @@ func wallslide():
 	
 
 func update_animation():
-	if is_on_wall() and !is_on_floor() and velocity.y >= 0:
+	if is_on_wall() and !is_on_floor() and velocity.y >= 0 and !has_box:
 		if Input.is_action_pressed('ui_left'):
 			player.animation = "wall_slide"
 			player.flip_h = false
@@ -105,7 +126,8 @@ func update_animation():
 			player.flip_h = true
 		else:
 			player.animation = "jump"
-			
+	elif has_box:
+		player.animation = "push_box"
 	elif !is_on_floor():
 		if velocity.x > 0.1:
 			player.animation = "jump"
@@ -134,10 +156,19 @@ func update_animation():
 	outline.play(player.animation)
 	player.play(player.animation)
 
-func _check_for_spikes():
+func _check_for_collision():
 	for i in range(get_slide_collision_count()):
 		var collision = get_slide_collision(i)
 		var collider = collision.get_collider()
+		
+		if collider is RigidBody2D and Input.is_action_pressed('ui_accept') and !has_box and drop_timer.is_stopped():
+			box_grabber.node_b = collider.get_path()
+			has_box = true
+			grabbed_box = collider
+			drop_timer.start()
+			
+		#if collider is RigidBody2D and has_box:
+			#collider.apply_force((collider.global_position - global_position).normalized() * PUSH_FORCE)
 
 		if collider is TileMapLayer:
 			var tilemap: TileMapLayer = collider
@@ -150,4 +181,7 @@ func _check_for_spikes():
 					
 func respawn():
 	PlayerData.add_death()
+	box_grabber.node_b = NodePath("")
+	has_box = false
+	drop_timer.start()
 	global_position = PlayerData.respawn_position			
