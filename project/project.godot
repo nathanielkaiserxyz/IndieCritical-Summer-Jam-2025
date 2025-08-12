@@ -69,6 +69,10 @@ ui_r={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_5="Jump Pad"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

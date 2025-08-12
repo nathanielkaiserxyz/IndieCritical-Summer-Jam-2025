@@ -13,8 +13,8 @@ size = Vector2(22, 22)
 
 [node name="RigidBody2D" type="RigidBody2D" parent="." groups=["box"]]
 visibility_layer = 2
-collision_layer = 4
-collision_mask = 7
+collision_layer = 8
+collision_mask = 9
 script = ExtResource("1_oq5cr")
 
 [node name="Sprite2D" type="Sprite2D" parent="RigidBody2D"]

@@ -9,7 +9,7 @@ const WALL_JUMP_POWER = 75
 const WALL_SLIDE_GRAVITY = 50
 var is_wall_sliding = false
 
-const KILL_ZONE_Y = 1000
+const KILL_ZONE_Y = 1100
 const PUSH_FORCE = 2000
 
 @onready var player = $player_animations
@@ -168,13 +168,16 @@ func _check_for_collision():
 		
 		if collider is RigidBody2D and Input.is_action_pressed('ui_accept') and !has_box and drop_timer.is_stopped():
 			if collider.is_in_group("box"):
+				box_grabber.disable_collision = true
 				box_grabber.node_b = collider.get_path()
 				has_box = true
 				drop_timer.start()
 			if collider.is_in_group("key"):
+				box_grabber.disable_collision = true
 				box_grabber.node_b = collider.get_path()
 				has_key = true
 				PlayerData.has_key = true
+				
 				drop_timer.start()
 				
 		#if collider is RigidBody2D and has_box:

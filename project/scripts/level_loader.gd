@@ -11,11 +11,13 @@ var flames = [
 	false,
 	false
 ]
+
 var level_color = [
 	Color(1.0, 1.0, 1.0),
 	Color(0.0, 1.0, 1.0),
 	Color(0.0, 1.0, 0.0),
 ]
+
 var current_level_index := 0
 
 
