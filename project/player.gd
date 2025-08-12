@@ -181,20 +181,18 @@ func _check_for_collision():
 				PlayerData.has_key = true
 				
 				drop_timer.start()
-				
-		#if collider is RigidBody2D and has_box:
-			#collider.apply_force((collider.global_position - global_position).normalized() * PUSH_FORCE)
 
 		if collider is TileMapLayer:
 			var tilemap: TileMapLayer = collider
-			var tile_pos = tilemap.local_to_map(collision.get_position())
-			
-			var data = tilemap.get_cell_tile_data(tile_pos)
-			if data != null:
-				if data.get_custom_data("damage") == 1:
-					respawn()
-				if data.get_custom_data("shootup") > 0:
-					velocity.y = -data.get_custom_data("shootup")
+			var tile_pos = tilemap.get_coords_for_body_rid(collision.get_collider_rid())
+	
+			if tile_pos != null:
+				var data = tilemap.get_cell_tile_data(tile_pos)
+				if data:
+					if data.get_custom_data("damage") == 1:
+						respawn()
+					if data.get_custom_data("shootup") > 0:
+						velocity.y = -data.get_custom_data("shootup")
 					
 func respawn():
 	PlayerData.add_death()

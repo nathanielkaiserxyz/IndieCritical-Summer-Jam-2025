@@ -28,8 +28,6 @@ var level_times = [
 var current_level_index := 0
 var current_level_time_index := 0
 
-
-
 func _physics_process(delta: float) -> void:
 	level_times[current_level_time_index] += delta
 
@@ -44,12 +42,14 @@ func load_level(index: int):
 		current_level_index = index
 		if index == 1:
 			PlayerData.append_skins(Vector4(0.0,1.0,1.0,1.0))
+		if index == 2:
+			PlayerData.append_skins(Vector4(0.0,1.0,0.0,1.0))
 		
 		get_tree().change_scene_to_file(levels[index])
 	else:
 		print("No more levels — you win!")
 		# Optional: load win screen
-		get_tree().change_scene_to_file("res://WinScreen.tscn")
+		get_tree().change_scene_to_file("res://you_win.tscn")
 
 func next_level():
 	print("time to complete level:", level_times[current_level_time_index] )
