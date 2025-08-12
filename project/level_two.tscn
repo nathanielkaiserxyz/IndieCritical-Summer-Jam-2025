@@ -745,7 +745,7 @@ texture = ExtResource("9_63ais")
 
 [node name="Player" parent="." instance=ExtResource("10_3sv6r")]
 top_level = true
-position = Vector2(484, -354)
+position = Vector2(392, 218)
 
 [node name="levelDoors" type="Area2D" parent="."]
 visibility_layer = 4
@@ -763,7 +763,7 @@ texture = ExtResource("12_531n3")
 
 [node name="respawn_door" parent="." instance=ExtResource("13_qotln")]
 material = SubResource("ShaderMaterial_f8h4k")
-position = Vector2(584, 56)
+position = Vector2(392, 248)
 
 [node name="flame" parent="." instance=ExtResource("14_48q8l")]
 modulate = Color(0, 1, 1, 1)
@@ -796,14 +796,17 @@ self_modulate = Color(0, 1, 1, 1)
 position = Vector2(473, 454)
 
 [node name="box2" parent="." instance=ExtResource("15_8gbg3")]
+modulate = Color(0, 1, 1, 1)
 position = Vector2(379, -616)
 
 [node name="turret3" parent="." instance=ExtResource("17_f8h4k")]
+modulate = Color(0, 1, 1, 1)
 self_modulate = Color(0, 1, 1, 1)
 position = Vector2(168, 226)
 rotation = 1.5708
 
 [node name="box3" parent="." instance=ExtResource("15_8gbg3")]
+modulate = Color(0, 1, 1, 1)
 position = Vector2(379, -824)
 
 [connection signal="area_entered" from="levelDoors" to="levelDoors" method="_on_area_entered"]

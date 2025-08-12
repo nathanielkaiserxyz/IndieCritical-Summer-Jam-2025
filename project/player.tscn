@@ -166,28 +166,28 @@ animations = [{
 [node name="Player" type="Node2D" groups=["player"]]
 y_sort_enabled = true
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
+[node name="player" type="CharacterBody2D" parent="." groups=["player"]]
 z_index = 1
 material = ExtResource("2_sweqy")
 collision_layer = 2
 collision_mask = 31
 script = ExtResource("1_onrkg")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
 position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_onrkg")
 
-[node name="player_animations" type="AnimatedSprite2D" parent="CharacterBody2D" groups=["player"]]
+[node name="player_animations" type="AnimatedSprite2D" parent="player" groups=["player"]]
 sprite_frames = SubResource("SpriteFrames_i3pqv")
 animation = &"idle"
 
-[node name="outline_animations" type="AnimatedSprite2D" parent="CharacterBody2D"]
+[node name="outline_animations" type="AnimatedSprite2D" parent="player"]
 z_index = 3
 material = ExtResource("2_sweqy")
 sprite_frames = SubResource("SpriteFrames_i3pqv")
 animation = &"idle"
 
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+[node name="Camera2D" type="Camera2D" parent="player"]
 zoom = Vector2(2, 2)
 process_callback = 0
 position_smoothing_enabled = true
@@ -195,34 +195,34 @@ position_smoothing_speed = 10.0
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="coyote_timer" type="Timer" parent="CharacterBody2D"]
+[node name="coyote_timer" type="Timer" parent="player"]
 wait_time = 0.15
 one_shot = true
 
-[node name="jump" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+[node name="jump" type="AudioStreamPlayer2D" parent="player"]
 stream = ExtResource("4_hqtel")
 
-[node name="wall_jump_x_velo" type="Timer" parent="CharacterBody2D"]
+[node name="wall_jump_x_velo" type="Timer" parent="player"]
 wait_time = 0.15
 one_shot = true
 
-[node name="wall_jump_reset" type="Timer" parent="CharacterBody2D"]
+[node name="wall_jump_reset" type="Timer" parent="player"]
 wait_time = 0.5
 one_shot = true
 
-[node name="skin_change_timer" type="Timer" parent="CharacterBody2D"]
+[node name="skin_change_timer" type="Timer" parent="player"]
 wait_time = 0.25
 one_shot = true
 
-[node name="jump_buffer_timer" type="Timer" parent="CharacterBody2D"]
+[node name="jump_buffer_timer" type="Timer" parent="player"]
 wait_time = 0.3
 one_shot = true
 
-[node name="drop_timer" type="Timer" parent="CharacterBody2D"]
+[node name="drop_timer" type="Timer" parent="player"]
 wait_time = 0.25
 one_shot = true
 
-[node name="box_grabber" type="PinJoint2D" parent="CharacterBody2D"]
+[node name="box_grabber" type="PinJoint2D" parent="player"]
 node_a = NodePath("..")
 disable_collision = false
 angular_limit_enabled = true

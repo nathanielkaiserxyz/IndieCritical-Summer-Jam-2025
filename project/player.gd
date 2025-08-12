@@ -29,6 +29,8 @@ var change_skin = false
 var has_box = false
 var has_key = false
 
+signal key_reset
+
 func _ready():
 	$outline_animations.material.set_shader_parameter("outline_color", PlayerData.force_skin_change())
 	
@@ -196,7 +198,8 @@ func _check_for_collision():
 					
 func respawn():
 	PlayerData.add_death()
+	emit_signal("key_reset")
 	box_grabber.node_b = NodePath("")
 	has_box = false
 	drop_timer.start()
-	global_position = PlayerData.respawn_position			
+	global_position = PlayerData.respawn_position
