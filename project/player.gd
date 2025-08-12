@@ -50,7 +50,7 @@ func _physics_process(delta):
 		$outline_animations.material.set_shader_parameter("outline_color", v)
 		print(flame)
 		if flame:
-			flame.self_modulate = Color(v.x, v.y, v.z)
+			flame.modulate = Color(v.x, v.y, v.z)
 		skin_change.start()
 
 	is_ducking = Input.is_action_pressed("ui_down")

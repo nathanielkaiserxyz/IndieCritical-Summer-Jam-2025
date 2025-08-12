@@ -16,7 +16,7 @@ script = ExtResource("1_v8qja")
 scale = Vector2(0.8, 0.8)
 shape = SubResource("CircleShape2D_v7oki")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="ball" type="Sprite2D" parent="."]
 texture = ExtResource("1_v7oki")
 
 [node name="Area2D" type="Area2D" parent="." groups=["player"]]

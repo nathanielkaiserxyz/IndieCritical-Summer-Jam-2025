@@ -11,6 +11,11 @@ var flames = [
 	false,
 	false
 ]
+var level_color = [
+	Color(1.0, 1.0, 1.0),
+	Color(0.0, 1.0, 1.0),
+	Color(0.0, 1.0, 0.0),
+]
 var current_level_index := 0
 
 
@@ -34,6 +39,9 @@ func load_level(index: int):
 func next_level():
 	load_level(current_level_index + 1)
 	
+func get_level_color():
+	return level_color[current_level_index]
+
 func set_flame_found():
 	flames[current_level_index] = true
 	print(flames[current_level_index])
