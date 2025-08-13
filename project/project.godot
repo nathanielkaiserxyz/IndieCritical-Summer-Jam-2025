@@ -13,6 +13,9 @@ config_version=5
 config/name="its not-what-it-seems"
 run/main_scene="uid://5aotl6ngfxw2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+boot_splash/bg_color=Color(0, 0, 0, 1)
+boot_splash/image="uid://b3vkxxbc8h1ip"
+boot_splash/minimum_display_time=1000
 
 [autoload]
 

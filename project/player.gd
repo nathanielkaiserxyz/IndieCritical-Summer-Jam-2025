@@ -199,9 +199,11 @@ func _check_for_collision():
 						velocity.y = -data.get_custom_data("shootup")
 					
 func respawn():
+	#$Camera2D.position_smoothing_speed = 4.0
 	PlayerData.add_death()
 	emit_signal("key_reset")
 	box_grabber.node_b = NodePath("")
 	has_box = false
 	drop_timer.start()
 	global_position = PlayerData.respawn_position
+	#$Camera2D.position_smoothing_speed = 10
