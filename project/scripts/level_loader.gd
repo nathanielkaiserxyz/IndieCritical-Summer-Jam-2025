@@ -31,7 +31,6 @@ var current_level_time_index := 0
 func _physics_process(delta: float) -> void:
 	level_times[current_level_time_index] += delta
 
-
 func start_game():
 	current_level_index = 0
 	current_level_time_index = 1
@@ -40,6 +39,7 @@ func start_game():
 func load_level(index: int):
 	if index >= 0 and index < levels.size():
 		current_level_index = index
+		current_level_time_index = index + 1
 		if index == 1:
 			PlayerData.append_skins(Vector4(0.0,1.0,1.0,1.0))
 		if index == 2:
@@ -53,6 +53,7 @@ func load_level(index: int):
 
 func next_level():
 	print("time to complete level:", level_times[current_level_time_index] )
+	current_level_time_index + 1
 	load_level(current_level_index + 1)
 	
 func get_level_color():

@@ -704,7 +704,7 @@ texture = ExtResource("6_q6pir")
 0:0/0/terrains_peering_bit/top_left_corner = 4
 0:0/0/terrains_peering_bit/top_side = 4
 0:0/0/terrains_peering_bit/top_right_corner = 4
-0:0/0/custom_data_0 = 1
+0:0/0/custom_data_1 = -1000
 
 [resource]
 physics_layer_0/collision_layer = 1
