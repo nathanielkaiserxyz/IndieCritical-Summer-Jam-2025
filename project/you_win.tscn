@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=4 uid="uid://bpodw0cp7xb4b"]
+[gd_scene load_steps=27 format=4 uid="uid://bpodw0cp7xb4b"]
 
 [ext_resource type="Texture2D" uid="uid://cn211xnxygj7f" path="res://assets/world/MainLevelTileSetrestore.png" id="1_02rmf"]
 [ext_resource type="Script" uid="uid://c0q3dalvrwy1s" path="res://you_win.gd" id="1_6ea66"]
@@ -14,6 +14,9 @@
 [ext_resource type="Theme" uid="uid://b3fa8735odogg" path="res://assets/main_menu/menu_buttons.tres" id="10_m7pjv"]
 [ext_resource type="Texture2D" uid="uid://huv3g2f3p88a" path="res://assets/world/star.png" id="11_6ea66"]
 [ext_resource type="Texture2D" uid="uid://5n51ia8a0dyq" path="res://assets/world/staroutline.png" id="14_h07q0"]
+[ext_resource type="Script" uid="uid://bj0jtfil3oty5" path="res://restart.gd" id="15_oxn2q"]
+[ext_resource type="Texture2D" uid="uid://6g6idhy1qkic" path="res://assets/world/door.png" id="16_buhdb"]
+[ext_resource type="PackedScene" uid="uid://bjkmhqyf5wcgm" path="res://key.tscn" id="17_buhdb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fj7yv"]
 
@@ -679,6 +682,8 @@ sources/2 = SubResource("TileSetAtlasSource_gbfbk")
 sources/4 = SubResource("TileSetAtlasSource_xq862")
 sources/5 = SubResource("TileSetAtlasSource_07h6n")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s2uy0"]
+
 [node name="level_one" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6ea66")
@@ -705,7 +710,7 @@ process_material = ExtResource("2_3qye7")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["walls"]]
 use_parent_material = true
-tile_map_data = PackedByteArray("AAAWABAAAAALAAMAAAAWAA8AAAALAAAAAAAVABAAAAAGAAIAAAAVAA8AAAAKAAAAAAAUABAAAAAJAAIAAAAUAA8AAAAKAAAAAAATABAAAAAJAAIAAAATAA8AAAAKAAAAAAASABAAAAAJAAIAAAASAA8AAAAKAAAAAAARABAAAAAJAAIAAAARAA8AAAAKAAAAAAAQABAAAAAJAAIAAAAQAA8AAAAKAAAAAAAPABAAAAAJAAIAAAAPAA8AAAAKAAAAAAAOABAAAAAJAAIAAAAOAA8AAAAKAAAAAAANABAAAAAJAAIAAAANAA8AAAAKAAAAAAAMABAAAAAFAAIAAAAMAA8AAAAKAAAAAAALABAAAAAIAAMAAAALAA8AAAAIAAAAAAAVABEAAAALAAMAAAAUABEAAAAJAAMAAAATABEAAAAGAAIAAAASABEAAAAJAAIAAAARABEAAAAJAAIAAAAQABEAAAAJAAIAAAAPABEAAAAJAAIAAAAOABEAAAAFAAIAAAANABEAAAAJAAMAAAAMABEAAAAIAAMAAAATABIAAAALAAMAAAASABIAAAAJAAMAAAARABIAAAAJAAMAAAAQABIAAAAJAAMAAAAPABIAAAAJAAMAAAAOABIAAAAIAAMAAAAfABEAAAADAAMAAAAeABEAAAACAAMAAAAdABEAAAACAAMAAAAcABEAAAACAAMAAAAbABEAAAACAAMAAAAaABEAAAABAAMAAAA=")
+tile_map_data = PackedByteArray("AAAWABAAAAALAAMAAAAWAA8AAAALAAAAAAAVABAAAAAGAAIAAAAVAA8AAAAKAAAAAAAUABAAAAAJAAIAAAAUAA8AAAAKAAAAAAATABAAAAAJAAIAAAATAA8AAAAKAAAAAAASABAAAAAJAAIAAAASAA8AAAAKAAAAAAARABAAAAAJAAIAAAARAA8AAAAKAAAAAAAQABAAAAAJAAIAAAAQAA8AAAAKAAAAAAAPABAAAAAJAAIAAAAPAA8AAAAKAAAAAAAOABAAAAAJAAIAAAAOAA8AAAAKAAAAAAANABAAAAAJAAIAAAANAA8AAAAKAAAAAAAMABAAAAAFAAIAAAAMAA8AAAAKAAAAAAALABAAAAAIAAMAAAALAA8AAAAIAAAAAAAVABEAAAALAAMAAAAUABEAAAAJAAMAAAATABEAAAAGAAIAAAASABEAAAAJAAIAAAARABEAAAAJAAIAAAAQABEAAAAJAAIAAAAPABEAAAAJAAIAAAAOABEAAAAFAAIAAAANABEAAAAJAAMAAAAMABEAAAAIAAMAAAATABIAAAALAAMAAAASABIAAAAJAAMAAAARABIAAAAJAAMAAAAQABIAAAAJAAMAAAAPABIAAAAJAAMAAAAOABIAAAAIAAMAAAAfABEAAAADAAMAAAAeABEAAAACAAMAAAAdABEAAAACAAMAAAAcABEAAAACAAMAAAAbABEAAAACAAMAAAAaABEAAAABAAMAAAAHABEAAAADAAMAAAAGABEAAAACAAMAAAAFABEAAAACAAMAAAAEABEAAAACAAMAAAADABEAAAACAAMAAAACABEAAAABAAMAAAA=")
 tile_set = SubResource("TileSet_tlwt5")
 
 [node name="ParallaxStars" type="ParallaxBackground" parent="."]
@@ -903,3 +908,42 @@ offset_right = 302.0
 offset_bottom = 192.0
 theme = ExtResource("10_m7pjv")
 horizontal_alignment = 1
+
+[node name="restart?" type="Label" parent="."]
+offset_left = 18.0
+offset_top = 217.0
+offset_right = 79.0
+offset_bottom = 240.0
+theme = ExtResource("10_m7pjv")
+text = "RESTART?"
+horizontal_alignment = 1
+
+[node name="github" type="Label" parent="."]
+offset_left = -82.0
+offset_top = 184.0
+offset_right = 8.0
+offset_bottom = 207.0
+theme = ExtResource("10_m7pjv")
+text = "ON GITHUB"
+horizontal_alignment = 1
+
+[node name="levelDoors" type="Area2D" parent="."]
+visibility_layer = 4
+position = Vector2(48, 256)
+script = ExtResource("15_oxn2q")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="levelDoors"]
+shape = SubResource("CapsuleShape2D_s2uy0")
+
+[node name="Sprite2D" type="Sprite2D" parent="levelDoors"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("16_buhdb")
+
+[node name="key" parent="." instance=ExtResource("17_buhdb")]
+position = Vector2(90, 262)
+
+[node name="githubstar" type="Sprite2D" parent="."]
+position = Vector2(-78, 191)
+texture = ExtResource("11_6ea66")
+
+[connection signal="body_entered" from="levelDoors" to="levelDoors" method="_on_body_entered"]

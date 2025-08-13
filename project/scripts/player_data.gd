@@ -1,5 +1,6 @@
 extends Node
 
+var show_player_animations := true
 var skin_index = 0
 var temp = 0
 
@@ -13,6 +14,7 @@ var skins = [
 ]
 #Vector4(0.0,1.0,1.0,1.0)
 #Vector4(0.0,1.0,0.0,1.0)
+
 func append_skins(new_color : Vector4):
 	skins.append(new_color)
 
@@ -27,7 +29,6 @@ func new_skin():
 
 func add_death():
 	player_death_count += 1
-	print("death_count = ", player_death_count)
 
 func force_skin_change():
 	skin_index = skins.size() - 1

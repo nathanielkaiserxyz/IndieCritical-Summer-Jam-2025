@@ -35,6 +35,21 @@ func start_game():
 	current_level_index = 0
 	current_level_time_index = 1
 	load_level(current_level_index)
+	
+	flames = [
+		false,
+		false,
+		false
+	]
+	
+	level_times = [
+		0,
+		0,
+		0,
+		0
+	]
+	PlayerData.player_death_count = 0
+	PlayerData.skins = [Vector4(1.0,1.0,1.0,1.0),]
 
 func load_level(index: int):
 	if index >= 0 and index < levels.size():
@@ -47,8 +62,6 @@ func load_level(index: int):
 		
 		get_tree().change_scene_to_file(levels[index])
 	else:
-		print("No more levels — you win!")
-		# Optional: load win screen
 		get_tree().change_scene_to_file("res://you_win.tscn")
 
 func next_level():

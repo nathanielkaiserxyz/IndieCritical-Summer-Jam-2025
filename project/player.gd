@@ -33,6 +33,7 @@ signal key_reset
 
 func _ready():
 	$outline_animations.material.set_shader_parameter("outline_color", PlayerData.force_skin_change())
+	$player_animations.visible = PlayerData.show_player_animations
 	
 func _physics_process(delta):
 	_check_for_collision()
@@ -46,11 +47,14 @@ func _physics_process(delta):
 		has_key = false
 		PlayerData.has_key = false
 		drop_timer.start()
-	
+		
+	if Input.is_action_just_pressed("ui_cut"):
+		PlayerData.show_player_animations = not PlayerData.show_player_animations
+		$player_animations.visible = PlayerData.show_player_animations
+		
 	if Input.is_action_pressed("ui_r") and skin_change.is_stopped():
 		var v = PlayerData.new_skin()
 		$outline_animations.material.set_shader_parameter("outline_color", v)
-		print(flame)
 		if flame:
 			flame.modulate = Color(v.x, v.y, v.z)
 		skin_change.start()

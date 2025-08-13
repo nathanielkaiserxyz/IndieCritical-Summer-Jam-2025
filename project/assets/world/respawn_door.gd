@@ -5,7 +5,6 @@ func _on_body_entered(_body: Node2D) -> void:
 	PlayerData.respawn_door = 0
 	await get_tree().create_timer(.25).timeout
 	PlayerData.respawn_door = 1
-	print("respawn here")
 	$respawn_door.animation = "respawn_here"
 	$respawn_door.play($respawn_door.animation)
 

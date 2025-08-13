@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=4 uid="uid://dffguv7ior0u0"]
+[gd_scene load_steps=22 format=4 uid="uid://dffguv7ior0u0"]
 
 [ext_resource type="Shader" uid="uid://b7ocywfvhchmk" path="res://assets/world/world.gdshader" id="1_jhhya"]
 [ext_resource type="TileSet" uid="uid://b6fp6hl5vxsaa" path="res://assets/world/main_level_tileset.tres" id="2_gyaej"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://cwsor1umju752" path="res://player.tscn" id="10_cgwj3"]
 [ext_resource type="Script" uid="uid://cv47gb3gkqrfy" path="res://level_doors.gd" id="11_uiumt"]
 [ext_resource type="Texture2D" uid="uid://6g6idhy1qkic" path="res://assets/world/door.png" id="12_pxxo6"]
+[ext_resource type="Theme" uid="uid://b3fa8735odogg" path="res://assets/main_menu/menu_buttons.tres" id="13_co3iu"]
 [ext_resource type="PackedScene" uid="uid://bgfqhka06ffwm" path="res://assets/world/respawn_door.tscn" id="13_g1fp1"]
 [ext_resource type="PackedScene" uid="uid://b2vvlq0sh0rt6" path="res://flame.tscn" id="14_bj7tw"]
 [ext_resource type="PackedScene" uid="uid://jk1wcnam6uqg" path="res://box.tscn" id="16_5yla4"]
@@ -128,6 +129,15 @@ position = Vector2(-888, 280)
 modulate = Color(0, 1, 0, 1)
 use_parent_material = false
 position = Vector2(-1176, -328)
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(0, 1, 0, 1)
+offset_left = 909.0
+offset_top = -48.0
+offset_right = 963.0
+offset_bottom = -25.0
+theme = ExtResource("13_co3iu")
+text = "press T..."
 
 [connection signal="area_entered" from="levelDoors" to="levelDoors" method="_on_area_entered"]
 [connection signal="body_entered" from="levelDoors" to="levelDoors" method="_on_body_entered"]

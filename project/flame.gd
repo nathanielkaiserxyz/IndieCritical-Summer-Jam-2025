@@ -7,6 +7,5 @@ func _on_body_entered(body: Node2D) -> void:
 		LevelLoader.set_flame_found()
 		flame.get_parent().remove_child(flame)
 		body.add_child(flame)
-		
 		var v = PlayerData.update_flame_color()
 		flame.modulate = Color(v.x, v.y, v.z)
