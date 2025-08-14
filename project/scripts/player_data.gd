@@ -29,10 +29,14 @@ func new_skin():
 
 func add_death():
 	player_death_count += 1
+	print(player_death_count)
 
 func force_skin_change():
 	skin_index = skins.size() - 1
 	return skins[skin_index]
+
+func force_skin_to_default():
+	return skins[0]
 	
 func update_flame_color():
 	return skins[skin_index]

@@ -684,7 +684,7 @@ sources/5 = SubResource("TileSetAtlasSource_07h6n")
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s2uy0"]
 
-[node name="level_one" type="Node2D"]
+[node name="you_win" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_6ea66")
 

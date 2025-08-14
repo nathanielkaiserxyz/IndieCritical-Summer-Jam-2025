@@ -32,7 +32,11 @@ var has_key = false
 signal key_reset
 
 func _ready():
-	$outline_animations.material.set_shader_parameter("outline_color", PlayerData.force_skin_change())
+	print(get_parent().get_parent().name)
+	if get_parent().get_parent().name == "you_win":
+		$outline_animations.material.set_shader_parameter("outline_color", PlayerData.force_skin_to_default())
+	else:
+		$outline_animations.material.set_shader_parameter("outline_color", PlayerData.force_skin_change())
 	$player_animations.visible = PlayerData.show_player_animations
 	
 func _physics_process(delta):
