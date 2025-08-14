@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://etxumcd5d0yn"]
+[gd_scene load_steps=9 format=3 uid="uid://etxumcd5d0yn"]
 
 [ext_resource type="Script" uid="uid://beqowio6jap42" path="res://parallax_background.gd" id="1_0g30k"]
 [ext_resource type="Texture2D" uid="uid://c650jpokvhw15" path="res://assets/world/background.png" id="2_sa5ru"]
@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://cnpai7pejkkim" path="res://assets/main_menu/moon.png" id="4_innu7"]
 [ext_resource type="Texture2D" uid="uid://cl4i7fp543mdq" path="res://assets/main_menu/options.png" id="5_0g30k"]
 [ext_resource type="Script" uid="uid://dhbkngqdo0xi7" path="res://options_menu.gd" id="6_0g30k"]
-[ext_resource type="AudioStream" uid="uid://d2jop3pvy554t" path="res://assets/main_menu/intro.wav" id="7_6jo7l"]
-[ext_resource type="AudioStream" uid="uid://bfkd44623oqe3" path="res://assets/main_menu/loop.wav" id="8_58j1y"]
 [ext_resource type="AudioStream" uid="uid://w6ddlqylg0a3" path="res://assets/main_menu/synth.wav" id="9_ngskh"]
 [ext_resource type="Theme" uid="uid://b3fa8735odogg" path="res://assets/main_menu/menu_buttons.tres" id="10_8v3uq"]
 
@@ -54,13 +52,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("6_0g30k")
 
-[node name="intro" type="AudioStreamPlayer2D" parent="Control"]
-stream = ExtResource("7_6jo7l")
-autoplay = true
-
-[node name="loop" type="AudioStreamPlayer2D" parent="Control"]
-stream = ExtResource("8_58j1y")
-
 [node name="click" type="AudioStreamPlayer2D" parent="Control"]
 
 [node name="hover" type="AudioStreamPlayer2D" parent="Control"]
@@ -83,15 +74,13 @@ text = "Music"
 layout_mode = 2
 theme = ExtResource("10_8v3uq")
 button_pressed = true
-text = "Sound"
+text = "SFX"
 
 [node name="back" type="Button" parent="Control/menu"]
 layout_mode = 2
 theme = ExtResource("10_8v3uq")
 text = "Back"
 
-[connection signal="finished" from="Control/intro" to="Control" method="_on_intro_finished"]
-[connection signal="finished" from="Control/loop" to="Control" method="_on_loop_finished"]
 [connection signal="toggled" from="Control/menu/music" to="Control" method="_on_music_toggled"]
 [connection signal="toggled" from="Control/menu/sound" to="Control" method="_on_sound_toggled"]
 [connection signal="pressed" from="Control/menu/back" to="Control" method="_on_back_pressed"]

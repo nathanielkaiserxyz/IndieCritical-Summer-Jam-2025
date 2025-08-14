@@ -14,13 +14,14 @@ config/name="its not-what-it-seems"
 run/main_scene="uid://5aotl6ngfxw2"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-boot_splash/image="uid://b3vkxxbc8h1ip"
+boot_splash/image="uid://u83l8sxp3a22"
 boot_splash/minimum_display_time=1000
 
 [autoload]
 
 LevelLoader="*res://scripts/level_loader.gd"
 PlayerData="*res://scripts/player_data.gd"
+AudioManager="*res://audio_manager.tscn"
 
 [display]
 

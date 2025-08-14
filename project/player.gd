@@ -29,6 +29,8 @@ var change_skin = false
 var has_box = false
 var has_key = false
 
+var jump_sound: AudioStream = load("res://assets/player/jump.wav")
+
 signal key_reset
 
 func _ready():
@@ -98,6 +100,7 @@ func jump():
 			
 	if is_on_floor() and !jump_buffer.is_stopped():
 			velocity.y = JUMP_VELOCITY
+			AudioManager.play_sfx(jump_sound)
 	
 	if Input.is_action_just_pressed("ui_up"):
 		if !is_on_floor():
@@ -105,18 +108,21 @@ func jump():
 			
 		if is_on_floor() or !coyote_timer.is_stopped():
 			velocity.y = JUMP_VELOCITY
+			AudioManager.play_sfx(jump_sound)
 			
 		if is_on_wall() and Input.is_action_pressed('ui_right') and wall_jump_reset.is_stopped() and !has_box:
 			velocity.y = JUMP_VELOCITY
 			velocity.x = -WALL_JUMP_POWER
 			wall_jump_timer.start()
 			wall_jump_reset.start()
+			AudioManager.play_sfx(jump_sound)
 			
 		if is_on_wall() and Input.is_action_pressed('ui_left') and wall_jump_reset.is_stopped() and !has_box:
 			velocity.y = JUMP_VELOCITY
 			velocity.x = WALL_JUMP_POWER
 			wall_jump_timer.start()
 			wall_jump_reset.start()
+			AudioManager.play_sfx(jump_sound)
 			
 func wallslide():
 	if !is_on_floor() and is_on_wall() and velocity.y >= 0 and !has_box:

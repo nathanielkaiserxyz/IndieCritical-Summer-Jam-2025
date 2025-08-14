@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=4 uid="uid://bpodw0cp7xb4b"]
+[gd_scene load_steps=81 format=4 uid="uid://bpodw0cp7xb4b"]
 
 [ext_resource type="Texture2D" uid="uid://cn211xnxygj7f" path="res://assets/world/MainLevelTileSetrestore.png" id="1_02rmf"]
 [ext_resource type="Script" uid="uid://c0q3dalvrwy1s" path="res://you_win.gd" id="1_6ea66"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://6g6idhy1qkic" path="res://assets/world/door.png" id="16_buhdb"]
 [ext_resource type="PackedScene" uid="uid://bjkmhqyf5wcgm" path="res://key.tscn" id="17_buhdb"]
 [ext_resource type="Texture2D" uid="uid://c52flbmd4olc" path="res://assets/world/endsceneanimation-Sheet.png" id="18_s2uy0"]
+[ext_resource type="Texture2D" uid="uid://b3vkxxbc8h1ip" path="res://assets/main_menu/splash.png" id="19_ygctl"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fj7yv"]
 
@@ -1091,6 +1092,7 @@ position = Vector2(322, 179)
 texture = ExtResource("7_xj10x")
 
 [node name="planet" type="ParallaxLayer" parent="ParallaxStars"]
+position = Vector2(2, -30)
 motion_scale = Vector2(0.6, 0.6)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/planet"]
@@ -1108,6 +1110,14 @@ offset_right = 306.0
 offset_bottom = 163.0
 theme = ExtResource("10_m7pjv")
 text = "GAME OVER"
+
+[node name="thanks_for_playing" type="Label" parent="."]
+offset_left = -60.0
+offset_top = -1040.0
+offset_right = 60.0
+offset_bottom = -1017.0
+theme = ExtResource("10_m7pjv")
+text = "THANKS FOR PLAYING!"
 
 [node name="total_time" type="Label" parent="."]
 offset_left = 181.0
@@ -1339,6 +1349,12 @@ animation = &"going_home"
 [node name="star_postioner" type="Node2D" parent="."]
 position = Vector2(269.226, 203.514)
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(8, -1014)
+scale = Vector2(0.05, 0.05)
+texture = ExtResource("19_ygctl")
+
 [connection signal="body_entered" from="levelDoors" to="levelDoors" method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="end_rocket_ship" to="." method="_on_end_rocket_ship_body_entered"]
+[connection signal="animation_finished" from="end_rocket_ship/ship" to="." method="_on_ship_animation_finished"]

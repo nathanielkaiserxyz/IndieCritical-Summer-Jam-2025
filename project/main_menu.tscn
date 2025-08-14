@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://5aotl6ngfxw2"]
+[gd_scene load_steps=9 format=3 uid="uid://5aotl6ngfxw2"]
 
 [ext_resource type="Script" uid="uid://do8tr0csydapw" path="res://main_menu.gd" id="1_7vrkn"]
 [ext_resource type="Script" uid="uid://beqowio6jap42" path="res://parallax_background.gd" id="1_glbon"]
@@ -6,10 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b2oq502hhc4j5" path="res://assets/world/galaxy_black_hole.png" id="2_glbon"]
 [ext_resource type="Texture2D" uid="uid://cnpai7pejkkim" path="res://assets/main_menu/moon.png" id="4_qe12f"]
 [ext_resource type="Texture2D" uid="uid://dq68uuug1rmbc" path="res://assets/main_menu/title.png" id="5_8qtwp"]
-[ext_resource type="AudioStream" uid="uid://d2jop3pvy554t" path="res://assets/main_menu/intro.wav" id="7_dy7ct"]
-[ext_resource type="AudioStream" uid="uid://bfkd44623oqe3" path="res://assets/main_menu/loop.wav" id="8_0o4t1"]
 [ext_resource type="Theme" uid="uid://b3fa8735odogg" path="res://assets/main_menu/menu_buttons.tres" id="8_8qtwp"]
-[ext_resource type="AudioStream" uid="uid://w6ddlqylg0a3" path="res://assets/main_menu/synth.wav" id="9_0o4t1"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qe12f"]
 bg_color = Color(0, 0, 0, 1)
@@ -62,18 +59,6 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_7vrkn")
 
-[node name="intro" type="AudioStreamPlayer2D" parent="Control"]
-stream = ExtResource("7_dy7ct")
-autoplay = true
-
-[node name="loop" type="AudioStreamPlayer2D" parent="Control"]
-stream = ExtResource("8_0o4t1")
-
-[node name="click" type="AudioStreamPlayer2D" parent="Control"]
-
-[node name="hover" type="AudioStreamPlayer2D" parent="Control"]
-stream = ExtResource("9_0o4t1")
-
 [node name="menu" type="VBoxContainer" parent="Control"]
 layout_mode = 0
 offset_left = 69.0
@@ -97,8 +82,6 @@ layout_mode = 2
 theme = ExtResource("8_8qtwp")
 text = "Quit"
 
-[connection signal="finished" from="Control/intro" to="Control" method="_on_intro_finished"]
-[connection signal="finished" from="Control/loop" to="Control" method="_on_loop_finished"]
 [connection signal="focus_entered" from="Control/menu/startgame" to="Control" method="_on_startgame_focus_entered"]
 [connection signal="pressed" from="Control/menu/startgame" to="Control" method="_on_startgame_pressed"]
 [connection signal="pressed" from="Control/menu/options" to="Control" method="_on_options_pressed"]

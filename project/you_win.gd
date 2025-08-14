@@ -16,6 +16,8 @@ extends Node2D
 @onready var star_scene = preload("res://shooting_star.tscn")
 @onready var player = get_node("Player/player")
 
+var new_cam = Camera2D.new()
+
 func _ready():
 	#set deaths
 	$deaths.text = str(PlayerData.player_death_count)
@@ -80,8 +82,6 @@ func _on_end_rocket_ship_body_entered(body: Node2D) -> void:
 
 	var old_cam = player.get_node("Camera2D")
 
-	var new_cam = Camera2D.new()
-
 	new_cam.global_position = old_cam.global_position + Vector2(-10, -20)
 	new_cam.zoom = old_cam.zoom
 	new_cam.rotation = old_cam.rotation
@@ -94,5 +94,9 @@ func _on_end_rocket_ship_body_entered(body: Node2D) -> void:
 	
 	rocket_ship.animation = "going_home"
 	rocket_ship.play(rocket_ship.animation)
-	
-	
+
+func _on_ship_animation_finished() -> void:
+	var target_position = Vector2(0, -1000)
+	var tween = get_tree().create_tween()
+	tween.tween_property(new_cam, "global_position", target_position, 3.0)
+	$star_postioner.global_position = Vector2(0, -1000)

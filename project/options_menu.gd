@@ -1,12 +1,16 @@
 extends Control
 
+var music: AudioStream = load("res://assets/sounds/mainmenu.wav")
+
+func _ready():
+	AudioManager.play_music(music)
 
 func _on_back_pressed() -> void:
-	$click.play()
 	get_tree().change_scene_to_file("res://main_menu.tscn")
 
 func _on_music_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
+
+	AudioManager.toggle_music(false)
 
 func _on_sound_toggled(toggled_on: bool) -> void:
-	pass # Replace with function body.
+	AudioManager.toggle_sfx(false)
