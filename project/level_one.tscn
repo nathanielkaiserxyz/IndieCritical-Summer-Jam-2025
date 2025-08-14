@@ -1,5 +1,6 @@
-[gd_scene load_steps=25 format=4 uid="uid://cqhemfhkk147a"]
+[gd_scene load_steps=26 format=4 uid="uid://cqhemfhkk147a"]
 
+[ext_resource type="Script" uid="uid://n1n01ypt0fy4" path="res://level_one.gd" id="1_37gll"]
 [ext_resource type="Texture2D" uid="uid://cn211xnxygj7f" path="res://assets/world/MainLevelTileSetrestore.png" id="2_6t2mo"]
 [ext_resource type="Texture2D" uid="uid://bv0r606hxrfyj" path="res://assets/world/chain.png" id="3_xq862"]
 [ext_resource type="Texture2D" uid="uid://dgdmy1cyuol4a" path="res://assets/world/MainLevelTileSetForeground.png" id="4_rnwmu"]
@@ -684,6 +685,7 @@ sources/5 = SubResource("TileSetAtlasSource_07h6n")
 
 [node name="level_one" type="Node2D"]
 y_sort_enabled = true
+script = ExtResource("1_37gll")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["walls"]]
 use_parent_material = true
@@ -739,5 +741,9 @@ position = Vector2(544, 378)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("15_07h6n")
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="area_entered" from="levelDoors" to="levelDoors" method="_on_area_entered"]
 [connection signal="body_entered" from="levelDoors" to="levelDoors" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpp65s28nct6m"]
+
+[ext_resource type="Script" uid="uid://0xalpnogli33" path="res://shooting_star.gd" id="1_16osl"]
+[ext_resource type="Texture2D" uid="uid://bf4v0mm6o1d6m" path="res://assets/world/shooting_star.png" id="2_tpr5q"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_16osl")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = -1
+texture = ExtResource("2_tpr5q")

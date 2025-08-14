@@ -24,7 +24,6 @@ var level_times = [
 	0
 ]
 
-
 var current_level_index := 0
 var current_level_time_index := 0
 

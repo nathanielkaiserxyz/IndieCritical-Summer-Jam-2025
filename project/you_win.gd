@@ -11,7 +11,8 @@ extends Node2D
 @onready var flame_two = $flame2
 @onready var flame_three = $flame3
 
-
+@onready var star_scene = preload("res://shooting_star.tscn")
+@onready var player = get_node("Player/player")
 
 func _ready():
 	#set deaths
@@ -60,3 +61,10 @@ func _ready():
 		$level3/star2.show()
 	if LevelLoader.level_times[3] < 56 and LevelLoader.flames[2]:
 		$level3/star3.show()
+
+
+func _on_timer_timeout():
+	var star = star_scene.instantiate()
+	add_child(star)
+	star.start_star(player.global_position)
+	

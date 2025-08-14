@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=4 uid="uid://dffguv7ior0u0"]
+[gd_scene load_steps=23 format=4 uid="uid://dffguv7ior0u0"]
 
 [ext_resource type="Shader" uid="uid://b7ocywfvhchmk" path="res://assets/world/world.gdshader" id="1_jhhya"]
 [ext_resource type="TileSet" uid="uid://b6fp6hl5vxsaa" path="res://assets/world/main_level_tileset.tres" id="2_gyaej"]
+[ext_resource type="Script" uid="uid://bve803bpnypr3" path="res://level_three.gd" id="2_yr1pg"]
 [ext_resource type="TileSet" uid="uid://cjws1lc2kopjm" path="res://assets/world/reverse_damage_set.tres" id="3_co3iu"]
 [ext_resource type="Texture2D" uid="uid://c650jpokvhw15" path="res://assets/world/background.png" id="8_74tmr"]
 [ext_resource type="Texture2D" uid="uid://b2oq502hhc4j5" path="res://assets/world/galaxy_black_hole.png" id="9_84jj0"]
@@ -44,10 +45,11 @@ shader_parameter/tint_color = Color(0, 1, 0, 1)
 shader = ExtResource("1_jhhya")
 shader_parameter/tint_color = Color(0, 1, 0, 1)
 
-[node name="level_two" type="Node2D"]
+[node name="level_three" type="Node2D"]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_orixp")
 use_parent_material = true
+script = ExtResource("2_yr1pg")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["walls"]]
 material = SubResource("ShaderMaterial_ioo17")
@@ -139,5 +141,9 @@ offset_bottom = -25.0
 theme = ExtResource("13_co3iu")
 text = "press T..."
 
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
 [connection signal="area_entered" from="levelDoors" to="levelDoors" method="_on_area_entered"]
 [connection signal="body_entered" from="levelDoors" to="levelDoors" method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
