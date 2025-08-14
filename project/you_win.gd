@@ -11,12 +11,16 @@ extends Node2D
 @onready var flame_two = $flame2
 @onready var flame_three = $flame3
 
+@onready var rocket_ship = $end_rocket_ship/ship
+
 @onready var star_scene = preload("res://shooting_star.tscn")
 @onready var player = get_node("Player/player")
 
 func _ready():
 	#set deaths
 	$deaths.text = str(PlayerData.player_death_count)
+	rocket_ship.animation = "default"
+	rocket_ship.play(rocket_ship.animation)
 	
 	#set times
 	level_one_time.text   = "1: %02d:%02d" % [int(LevelLoader.level_times[1] / 60), int(LevelLoader.level_times[1]) % 60]
@@ -66,5 +70,29 @@ func _ready():
 func _on_timer_timeout():
 	var star = star_scene.instantiate()
 	add_child(star)
-	star.start_star(player.global_position)
+	star.start_star($star_postioner.global_position)
+	
+
+
+func _on_end_rocket_ship_body_entered(body: Node2D) -> void:
+	$"gohome?".visible = false
+	
+
+	var old_cam = player.get_node("Camera2D")
+
+	var new_cam = Camera2D.new()
+
+	new_cam.global_position = old_cam.global_position + Vector2(-10, -20)
+	new_cam.zoom = old_cam.zoom
+	new_cam.rotation = old_cam.rotation
+	new_cam.position_smoothing_speed = old_cam.position_smoothing_speed
+
+	new_cam.make_current()
+	get_tree().current_scene.add_child(new_cam)
+
+	player.get_parent().queue_free()
+	
+	rocket_ship.animation = "going_home"
+	rocket_ship.play(rocket_ship.animation)
+	
 	
