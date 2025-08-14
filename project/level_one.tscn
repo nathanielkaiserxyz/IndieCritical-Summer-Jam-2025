@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=4 uid="uid://cqhemfhkk147a"]
+[gd_scene load_steps=27 format=4 uid="uid://cqhemfhkk147a"]
 
 [ext_resource type="Script" uid="uid://n1n01ypt0fy4" path="res://level_one.gd" id="1_37gll"]
 [ext_resource type="Texture2D" uid="uid://cn211xnxygj7f" path="res://assets/world/MainLevelTileSetrestore.png" id="2_6t2mo"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cwsor1umju752" path="res://player.tscn" id="8_rapvx"]
 [ext_resource type="Script" uid="uid://cv47gb3gkqrfy" path="res://level_doors.gd" id="9_uyji0"]
 [ext_resource type="Texture2D" uid="uid://6g6idhy1qkic" path="res://assets/world/door.png" id="10_i8j42"]
+[ext_resource type="Texture2D" uid="uid://caoqrlq5cn1k" path="res://assets/world/white_planet.png" id="10_rapvx"]
 [ext_resource type="PackedScene" uid="uid://bgfqhka06ffwm" path="res://assets/world/respawn_door.tscn" id="12_xq862"]
 [ext_resource type="PackedScene" uid="uid://b2vvlq0sh0rt6" path="res://flame.tscn" id="14_xdopl"]
 [ext_resource type="Texture2D" uid="uid://cnoxjnabfco6d" path="res://assets/world/E.png" id="15_07h6n"]
@@ -710,9 +711,16 @@ motion_mirroring = Vector2(3200, 1800)
 position = Vector2(320, 181)
 texture = ExtResource("7_37gll")
 
+[node name="planet" type="ParallaxLayer" parent="ParallaxStars"]
+position = Vector2(-604, 160)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/planet"]
+position = Vector2(320, 181)
+texture = ExtResource("10_rapvx")
+
 [node name="Player" parent="." instance=ExtResource("8_rapvx")]
 top_level = true
-position = Vector2(215, 218)
+position = Vector2(214, 218)
 
 [node name="levelDoors" type="Area2D" parent="."]
 visibility_layer = 4

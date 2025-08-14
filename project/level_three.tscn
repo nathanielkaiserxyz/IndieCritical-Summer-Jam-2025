@@ -1,9 +1,10 @@
-[gd_scene load_steps=23 format=4 uid="uid://dffguv7ior0u0"]
+[gd_scene load_steps=24 format=4 uid="uid://dffguv7ior0u0"]
 
 [ext_resource type="Shader" uid="uid://b7ocywfvhchmk" path="res://assets/world/world.gdshader" id="1_jhhya"]
 [ext_resource type="TileSet" uid="uid://b6fp6hl5vxsaa" path="res://assets/world/main_level_tileset.tres" id="2_gyaej"]
 [ext_resource type="Script" uid="uid://bve803bpnypr3" path="res://level_three.gd" id="2_yr1pg"]
 [ext_resource type="TileSet" uid="uid://cjws1lc2kopjm" path="res://assets/world/reverse_damage_set.tres" id="3_co3iu"]
+[ext_resource type="Texture2D" uid="uid://dtubf0eutbmyw" path="res://assets/world/color_planet.png" id="7_tbcfa"]
 [ext_resource type="Texture2D" uid="uid://c650jpokvhw15" path="res://assets/world/background.png" id="8_74tmr"]
 [ext_resource type="Texture2D" uid="uid://b2oq502hhc4j5" path="res://assets/world/galaxy_black_hole.png" id="9_84jj0"]
 [ext_resource type="PackedScene" uid="uid://cwsor1umju752" path="res://player.tscn" id="10_cgwj3"]
@@ -80,9 +81,18 @@ material = SubResource("ShaderMaterial_j03hg")
 position = Vector2(320, 181)
 texture = ExtResource("9_84jj0")
 
+[node name="planet" type="ParallaxLayer" parent="ParallaxStars"]
+z_index = 1
+position = Vector2(-584, -368)
+motion_scale = Vector2(0.7, 0.7)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/planet"]
+position = Vector2(17, 23)
+texture = ExtResource("7_tbcfa")
+
 [node name="Player" parent="." instance=ExtResource("10_cgwj3")]
 top_level = true
-position = Vector2(441, 99)
+position = Vector2(442, 92)
 
 [node name="levelDoors" type="Area2D" parent="."]
 visibility_layer = 4

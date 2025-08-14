@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=4 uid="uid://bf536iun2fevu"]
+[gd_scene load_steps=37 format=4 uid="uid://bf536iun2fevu"]
 
 [ext_resource type="Shader" uid="uid://b7ocywfvhchmk" path="res://assets/world/world.gdshader" id="1_orixp"]
 [ext_resource type="Texture2D" uid="uid://cn211xnxygj7f" path="res://assets/world/MainLevelTileSetrestore.png" id="2_f8h4k"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://b2oq502hhc4j5" path="res://assets/world/galaxy_black_hole.png" id="9_63ais"]
 [ext_resource type="PackedScene" uid="uid://cwsor1umju752" path="res://player.tscn" id="10_3sv6r"]
 [ext_resource type="Script" uid="uid://cv47gb3gkqrfy" path="res://level_doors.gd" id="11_3cfpt"]
+[ext_resource type="Texture2D" uid="uid://6aakvo5fw6m" path="res://assets/world/blue_planet.png" id="11_5ibcp"]
 [ext_resource type="Texture2D" uid="uid://6g6idhy1qkic" path="res://assets/world/door.png" id="12_531n3"]
 [ext_resource type="PackedScene" uid="uid://bgfqhka06ffwm" path="res://assets/world/respawn_door.tscn" id="13_qotln"]
 [ext_resource type="PackedScene" uid="uid://b2vvlq0sh0rt6" path="res://flame.tscn" id="14_48q8l"]
@@ -745,9 +746,17 @@ material = SubResource("ShaderMaterial_j03hg")
 position = Vector2(320, 181)
 texture = ExtResource("9_63ais")
 
+[node name="planet" type="ParallaxLayer" parent="ParallaxStars"]
+position = Vector2(-559, 112)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/planet"]
+material = SubResource("ShaderMaterial_j03hg")
+position = Vector2(315, 179)
+texture = ExtResource("11_5ibcp")
+
 [node name="Player" parent="." instance=ExtResource("10_3sv6r")]
 top_level = true
-position = Vector2(392, 218)
+position = Vector2(394, 227)
 
 [node name="levelDoors" type="Area2D" parent="."]
 visibility_layer = 4

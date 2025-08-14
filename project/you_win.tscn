@@ -9,9 +9,9 @@
 [ext_resource type="Texture2D" uid="uid://164wty0vxsj0" path="res://assets/world/spikes!.png" id="5_ygctl"]
 [ext_resource type="Texture2D" uid="uid://cwkgrg2b1bh6g" path="res://assets/world/shootup.png" id="6_vuesc"]
 [ext_resource type="Texture2D" uid="uid://c650jpokvhw15" path="res://assets/world/background.png" id="7_xj10x"]
-[ext_resource type="Texture2D" uid="uid://b2oq502hhc4j5" path="res://assets/world/galaxy_black_hole.png" id="8_j0o0m"]
 [ext_resource type="PackedScene" uid="uid://cwsor1umju752" path="res://player.tscn" id="9_oyga3"]
 [ext_resource type="Theme" uid="uid://b3fa8735odogg" path="res://assets/main_menu/menu_buttons.tres" id="10_m7pjv"]
+[ext_resource type="Texture2D" uid="uid://dtubf0eutbmyw" path="res://assets/world/color_planet.png" id="10_s2uy0"]
 [ext_resource type="Texture2D" uid="uid://huv3g2f3p88a" path="res://assets/world/star.png" id="11_6ea66"]
 [ext_resource type="Texture2D" uid="uid://5n51ia8a0dyq" path="res://assets/world/staroutline.png" id="14_h07q0"]
 [ext_resource type="Script" uid="uid://bj0jtfil3oty5" path="res://restart.gd" id="15_oxn2q"]
@@ -1090,14 +1090,12 @@ motion_mirroring = Vector2(640, 360)
 position = Vector2(322, 179)
 texture = ExtResource("7_xj10x")
 
-[node name="galaxies" type="ParallaxLayer" parent="ParallaxStars"]
-visible = false
-motion_scale = Vector2(0.3, 0.3)
-motion_mirroring = Vector2(3200, 1800)
+[node name="planet" type="ParallaxLayer" parent="ParallaxStars"]
+motion_scale = Vector2(0.6, 0.6)
 
-[node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/galaxies"]
-position = Vector2(320, 181)
-texture = ExtResource("8_j0o0m")
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/planet"]
+position = Vector2(321, 180)
+texture = ExtResource("10_s2uy0")
 
 [node name="Player" parent="." instance=ExtResource("9_oyga3")]
 top_level = true
@@ -1286,10 +1284,10 @@ text = "RESTART?"
 horizontal_alignment = 1
 
 [node name="gohome?" type="Label" parent="."]
-offset_left = 504.0
-offset_top = 192.0
-offset_right = 565.0
-offset_bottom = 215.0
+offset_left = 520.0
+offset_top = 189.0
+offset_right = 581.0
+offset_bottom = 212.0
 theme = ExtResource("10_m7pjv")
 text = "GO HOME?"
 horizontal_alignment = 1
