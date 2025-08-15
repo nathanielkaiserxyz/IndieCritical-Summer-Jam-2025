@@ -25,7 +25,7 @@ func _process(delta: float):
 
 
 func play_music(track: AudioStream):
-	if music_enabled:
+	if music_enabled and music_player.stream != track:
 		music_player.stream = track
 		music_player.play()
 		fade_in_music()
@@ -45,7 +45,10 @@ func fade_out_music():
 
 func toggle_music(enabled: bool):
 	music_enabled = enabled
+	print(enabled)
 	if enabled:
+		if not music_player.playing and music_player.stream:
+			music_player.play()
 		fade_in_music()
 	else:
 		fade_out_music()

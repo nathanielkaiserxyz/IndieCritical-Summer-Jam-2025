@@ -718,7 +718,6 @@ shader_parameter/tint_color = Color(0, 1, 1, 1)
 [node name="level_two" type="Node2D"]
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_orixp")
-use_parent_material = true
 script = ExtResource("2_ytroq")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." groups=["walls"]]

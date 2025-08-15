@@ -18,7 +18,7 @@
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_orixp"]
 shader = ExtResource("1_jhhya")
-shader_parameter/tint_color = Color(0, 1, 1, 1)
+shader_parameter/tint_color = Color(0, 1, 0, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ioo17"]
 shader = ExtResource("1_jhhya")

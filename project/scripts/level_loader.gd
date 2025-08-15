@@ -67,7 +67,6 @@ func load_level(index: int):
 		get_tree().change_scene_to_file("res://you_win.tscn")
 
 func next_level():
-	print("time to complete level:", level_times[current_level_time_index] )
 	current_level_time_index + 1
 	load_level(current_level_index + 1)
 	

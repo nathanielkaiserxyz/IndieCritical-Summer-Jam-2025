@@ -28,13 +28,13 @@ var is_ducking = false
 var change_skin = false
 var has_box = false
 var has_key = false
+var was_on_floor = false
 
 var jump_sound: AudioStream = load("res://assets/player/jump.wav")
 
 signal key_reset
 
-func _ready():
-	print(get_parent().get_parent().name)
+func _ready():	
 	if get_parent().get_parent().name == "you_win":
 		$outline_animations.material.set_shader_parameter("outline_color", PlayerData.force_skin_to_default())
 	else:
@@ -84,12 +84,18 @@ func _physics_process(delta):
 		else:
 			velocity.x = move_toward(velocity.x, 0, SPEED)
 
-	var was_on_floor = is_on_floor()
+	was_on_floor = is_on_floor()
 	
 	move_and_slide()
 	wallslide()
 	jump()
 	update_animation()
+	
+	if !was_on_floor and is_on_floor():
+		var jump_splash = preload("res://jump_splash.tscn").instantiate()
+		jump_splash.material = get_parent().get_parent().material
+		self.get_parent().add_child(jump_splash)
+		jump_splash.global_position = global_position + Vector2(0, -2)
 	
 	if was_on_floor and !is_on_floor():
 		coyote_timer.start()

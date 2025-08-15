@@ -1,0 +1,70 @@
+[gd_scene load_steps=10 format=3 uid="uid://cdjclaucig3qi"]
+
+[ext_resource type="Texture2D" uid="uid://eoodmt38exoq" path="res://assets/player/jumpsplash-Sheet.png" id="1_11bpa"]
+[ext_resource type="Script" uid="uid://643bfegqtg1x" path="res://jump_splash.gd" id="2_a70lv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pbfsw"]
+atlas = ExtResource("1_11bpa")
+region = Rect2(0, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5tmop"]
+atlas = ExtResource("1_11bpa")
+region = Rect2(20, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ahtn"]
+atlas = ExtResource("1_11bpa")
+region = Rect2(40, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7lmhl"]
+atlas = ExtResource("1_11bpa")
+region = Rect2(60, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dx0e4"]
+atlas = ExtResource("1_11bpa")
+region = Rect2(80, 0, 20, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jm5j8"]
+atlas = ExtResource("1_11bpa")
+region = Rect2(100, 0, 20, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n2fl5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pbfsw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5tmop")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ahtn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7lmhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dx0e4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jm5j8")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"player",
+"speed": 5.0
+}]
+
+[node name="jump_splash_tscn" type="Node2D"]
+
+[node name="jump_splash" type="AnimatedSprite2D" parent="."]
+z_index = 1
+use_parent_material = true
+sprite_frames = SubResource("SpriteFrames_n2fl5")
+animation = &"player"
+script = ExtResource("2_a70lv")
+
+[connection signal="animation_finished" from="jump_splash" to="jump_splash" method="_on_animation_finished"]
