@@ -61,7 +61,7 @@ animations = [{
 [node name="jump_splash_tscn" type="Node2D"]
 
 [node name="jump_splash" type="AnimatedSprite2D" parent="."]
-z_index = 1
+z_index = 2
 use_parent_material = true
 sprite_frames = SubResource("SpriteFrames_n2fl5")
 animation = &"player"
