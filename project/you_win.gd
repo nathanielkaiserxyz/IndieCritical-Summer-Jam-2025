@@ -58,7 +58,7 @@ func _ready():
 	
 	if LevelLoader.level_times[2] < 200:
 		$level2/star1.show()
-	if LevelLoader.level_times[2] < 60:
+	if LevelLoader.level_times[2] < 88:
 		$level2/star2.show()
 	if LevelLoader.level_times[2] < 44:
 		$level2/star3.show()

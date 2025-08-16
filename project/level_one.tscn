@@ -700,7 +700,7 @@ motion_scale = Vector2(0.1, 0.1)
 motion_mirroring = Vector2(640, 360)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxStars/StarLayer"]
-position = Vector2(322, 179)
+position = Vector2(320, 180)
 texture = ExtResource("6_07h6n")
 
 [node name="galaxies" type="ParallaxLayer" parent="ParallaxStars"]

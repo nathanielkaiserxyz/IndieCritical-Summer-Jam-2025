@@ -8,4 +8,4 @@ script = ExtResource("1_jisk1")
 [node name="music_player" type="AudioStreamPlayer" parent="."]
 
 [node name="sfx_player" type="AudioStreamPlayer" parent="."]
-volume_db = -15.0
+volume_db = -16.0
