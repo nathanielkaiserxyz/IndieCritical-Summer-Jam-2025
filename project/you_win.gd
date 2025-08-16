@@ -20,6 +20,8 @@ var music: AudioStream = load("res://assets/world/cat-game-2.ogg")
 var new_cam = Camera2D.new()
 
 func _ready():
+	#music and respawn location
+	PlayerData.respawn_position = Vector2(270, 240)
 	AudioManager.play_music(music)
 	#set deaths
 	$deaths.text = str(PlayerData.player_death_count)

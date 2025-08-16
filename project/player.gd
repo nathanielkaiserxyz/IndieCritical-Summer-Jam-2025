@@ -32,6 +32,7 @@ var was_on_floor = false
 
 var jump_sound: AudioStream = load("res://assets/player/jump.wav")
 var landing_sound:  AudioStream = load("res://assets/player/hitHurt.wav")
+var respawn_sound:  AudioStream = load("res://assets/player/hitHurt.wav")
 
 signal key_reset
 
@@ -217,6 +218,7 @@ func _check_for_collision():
 						velocity.y = -data.get_custom_data("shootup")
 					
 func respawn():
+	AudioManager.play_sfx(landing_sound)
 	#$Camera2D.position_smoothing_speed = 4.0
 	PlayerData.add_death()
 	emit_signal("key_reset")
