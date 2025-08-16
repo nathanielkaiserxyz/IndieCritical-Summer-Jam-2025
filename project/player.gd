@@ -3,7 +3,7 @@ extends CharacterBody2D
 const SPEED = 200.0
 
 const JUMP_VELOCITY = -300
-const FRICTION = 900
+const FRICTION = 4000
 
 const WALL_JUMP_POWER = 75
 const WALL_SLIDE_GRAVITY = 50
@@ -31,6 +31,7 @@ var has_key = false
 var was_on_floor = false
 
 var jump_sound: AudioStream = load("res://assets/player/jump.wav")
+var landing_sound:  AudioStream = load("res://assets/player/hitHurt.wav")
 
 signal key_reset
 
@@ -96,6 +97,7 @@ func _physics_process(delta):
 		jump_splash.material = get_parent().get_parent().material
 		self.get_parent().add_child(jump_splash)
 		jump_splash.global_position = global_position + Vector2(0, -2)
+		#AudioManager.play_sfx(landing_sound)
 	
 	if was_on_floor and !is_on_floor():
 		coyote_timer.start()

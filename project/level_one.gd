@@ -2,7 +2,7 @@ extends Node2D
 
 @onready var star_scene = preload("res://shooting_star.tscn")
 @onready var player = get_node("Player/player")
-var music: AudioStream = load("res://assets/sounds/mainmenu.wav")
+var music: AudioStream = load("res://assets/world/cat-game-2.ogg")
 
 func _ready():
 	AudioManager.play_music(music)

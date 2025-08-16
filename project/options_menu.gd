@@ -1,9 +1,7 @@
 extends Control
 
-var music: AudioStream = load("res://assets/sounds/mainmenu.wav")
-
 func _ready():
-	AudioManager.play_music(music)
+	pass
 
 func _on_back_pressed() -> void:
 	get_tree().change_scene_to_file("res://main_menu.tscn")

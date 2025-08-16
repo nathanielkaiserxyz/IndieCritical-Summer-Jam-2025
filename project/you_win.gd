@@ -16,9 +16,11 @@ extends Node2D
 @onready var star_scene = preload("res://shooting_star.tscn")
 @onready var player = get_node("Player/player")
 
+var music: AudioStream = load("res://assets/world/cat-game-2.ogg")
 var new_cam = Camera2D.new()
 
 func _ready():
+	AudioManager.play_music(music)
 	#set deaths
 	$deaths.text = str(PlayerData.player_death_count)
 	rocket_ship.animation = "default"
@@ -51,14 +53,14 @@ func _ready():
 		$level1/star1.show()
 	if LevelLoader.level_times[1] < 30:
 		$level1/star2.show()
-	if LevelLoader.level_times[1] < 21:
+	if LevelLoader.level_times[1] < 25:
 		$level1/star3.show()
 	
 	if LevelLoader.level_times[2] < 200:
 		$level2/star1.show()
 	if LevelLoader.level_times[2] < 60:
 		$level2/star2.show()
-	if LevelLoader.level_times[2] < 40:
+	if LevelLoader.level_times[2] < 44:
 		$level2/star3.show()
 	
 	if LevelLoader.level_times[3] < 200:

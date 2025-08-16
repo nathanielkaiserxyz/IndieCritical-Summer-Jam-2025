@@ -1,5 +1,5 @@
 extends Control
-var music: AudioStream = load("res://assets/sounds/mainmenu.wav")
+var music: AudioStream = load("res://assets/world/cat-game-2.ogg")
 var click: AudioStream = load("res://assets/main_menu/click.wav")
 
 func _ready():
