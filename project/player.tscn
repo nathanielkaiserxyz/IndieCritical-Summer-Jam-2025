@@ -170,7 +170,7 @@ y_sort_enabled = true
 z_index = 1
 material = ExtResource("2_sweqy")
 collision_layer = 2
-collision_mask = 31
+collision_mask = 63
 script = ExtResource("1_onrkg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player"]
