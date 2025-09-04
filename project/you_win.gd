@@ -55,21 +55,21 @@ func _ready():
 		$level1/star1.show()
 	if LevelLoader.level_times[1] < 30:
 		$level1/star2.show()
-	if LevelLoader.level_times[1] < 25:
+	if LevelLoader.level_times[1] < 35:
 		$level1/star3.show()
 	
 	if LevelLoader.level_times[2] < 200:
 		$level2/star1.show()
-	if LevelLoader.level_times[2] < 88:
+	if LevelLoader.level_times[2] < 150:
 		$level2/star2.show()
-	if LevelLoader.level_times[2] < 44:
+	if LevelLoader.level_times[2] < 100:
 		$level2/star3.show()
 	
 	if LevelLoader.level_times[3] < 200:
 		$level3/star1.show()
 	if LevelLoader.level_times[3] < 120:
 		$level3/star2.show()
-	if LevelLoader.level_times[3] < 50:
+	if LevelLoader.level_times[3] < 90:
 		$level3/star3.show()
 
 
